@@ -5,7 +5,7 @@ import
   BottomNavigationTab
 } from 'react-native-ui-kitten'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import { Dashboard } from '../screens/Dashboard'
+import { Rockets } from '../screens/Rockets'
 import { Alert } from 'react-native'
 
 export const BottomTab = (props) =>
@@ -20,14 +20,14 @@ export const BottomTab = (props) =>
       // selectedIndex={props.navigation.state.index}
       // onSelect={onTabSelect}
     >
-      <BottomNavigationTab title='Dashboard' />
+      <BottomNavigationTab title='Rockets' />
       <BottomNavigationTab title='Settings' />
     </BottomNavigation>
   )
 }
 
 export const BottomTabNavigator = createBottomTabNavigator({
-  Dashboard: Dashboard,
+  Dashboard: Rockets,
   // Settings: Settings,
 }, {
   initialRouteName: 'Dashboard',
