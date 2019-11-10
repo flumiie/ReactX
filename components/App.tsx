@@ -10,12 +10,12 @@
  * @format
  */
 
-import React from 'react';
+import React from 'react'
 import {
   ImageProps,
   ImageStyle,
   StyleSheet,
-} from 'react-native';
+} from 'react-native'
 import {
   ApplicationProvider,
   Button,
@@ -23,12 +23,13 @@ import {
   IconRegistry,
   Layout,
   Text,
-} from 'react-native-ui-kitten';
+} from 'react-native-ui-kitten'
 import {
   mapping,
   light as theme,
-} from '@eva-design/eva';
-import { EvaIconsPack } from '@ui-kitten/eva-icons';
+} from '@eva-design/eva'
+import { EvaIconsPack } from '@ui-kitten/eva-icons'
+import { BottomTab } from './navigations/BottomTab'
 
 /**
  * Use any valid `name` property from eva icons (e.g `github`, or `heart-outline`)
@@ -36,7 +37,7 @@ import { EvaIconsPack } from '@ui-kitten/eva-icons';
  */
 const HeartIcon = (style: ImageStyle): React.ReactElement<ImageProps> => (
   <Icon {...style} name='heart'/>
-);
+)
 
 const App = (): React.ReactFragment => (
   <React.Fragment>
@@ -56,9 +57,10 @@ const App = (): React.ReactFragment => (
           LIKE
         </Button>
       </Layout>
+      <BottomTab/>
     </ApplicationProvider>
   </React.Fragment>
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -72,6 +74,6 @@ const styles = StyleSheet.create({
   likeButton: {
     marginVertical: 16,
   },
-});
+})
 
-export default App;
+export default App
