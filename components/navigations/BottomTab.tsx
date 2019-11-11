@@ -1,24 +1,32 @@
 import React from 'react'
+import { createBottomTabNavigator } from 'react-navigation-tabs'
+import { NavigationActions } from 'react-navigation';
+import { NavigationProps } from '../..';
+
 import
 {
   BottomNavigation,
   BottomNavigationTab
 } from 'react-native-ui-kitten'
-import { createBottomTabNavigator } from 'react-navigation-tabs'
 import { Rockets } from '../screens/Rockets'
-import { Alert } from 'react-native'
+import { Settings } from '../screens/Settings'
 
-export const BottomTab = (props) =>
+const BottomNavigations = ({ navigation }: NavigationProps) =>
 {
-  const onTabSelect = (selectedIndex) => {
-    const { [index]: selectedRoute } = props.navigation.state.routes
-    props.navigation.navigate(selectedRoute.routeName)
+  let index = 0
+  const onTabSelect = (index: any) =>
+  {
+    // const { [index]: selectedRoute } = navigation.state.routes;
+    // if(navigation)
+    //   navigation.dispatch(
+        NavigationActions.navigate({ routeName: 'Settings' })
+      // );
   }
 
   return (
     <BottomNavigation
-      // selectedIndex={props.navigation.state.index}
-      // onSelect={onTabSelect}
+      selectedIndex={index}
+      onSelect={onTabSelect}
     >
       <BottomNavigationTab title='Rockets' />
       <BottomNavigationTab title='Settings' />
@@ -27,9 +35,15 @@ export const BottomTab = (props) =>
 }
 
 export const BottomTabNavigator = createBottomTabNavigator({
-  Dashboard: Rockets,
-  // Settings: Settings,
+  Rockets: Rockets,
+  Settings: Settings,
 }, {
-  initialRouteName: 'Dashboard',
-  tabBarComponent: BottomTab,
+  initialRouteName: 'Rockets',
+  tabBarComponent: BottomNavigations,
 })
+
+BottomNavigations.navigationOptions = {
+  title: 'Rockets'
+}
+
+export default BottomNavigations

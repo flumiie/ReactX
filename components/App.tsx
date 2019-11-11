@@ -32,7 +32,7 @@ import
   light as theme,
 } from '@eva-design/eva'
 import { EvaIconsPack } from '@ui-kitten/eva-icons'
-import { BottomTab } from './navigations/BottomTab'
+import BottomNavigations from './navigations/BottomTab'
 
 import { ApolloProvider } from 'react-apollo'; 
 import
@@ -72,7 +72,7 @@ const App = (): React.ReactFragment => (
             LIKE
           </Button> */}
         </Layout>
-        <BottomTab/>
+        <BottomNavigations/>
       </ApplicationProvider>
     </React.Fragment>
   </ApolloProvider>

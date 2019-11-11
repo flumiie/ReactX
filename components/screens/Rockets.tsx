@@ -1,8 +1,20 @@
 import React from 'react'
 import { Query } from 'react-apollo'
-import { ScrollView, Text, StyleSheet, Platform, FlatList, TouchableOpacity } from 'react-native'
+import
+{
+  StyleSheet,
+  Platform,
+  ScrollView,
+  TouchableOpacity,
+  FlatList,
+  View,
+  Text
+} from 'react-native'
 
 import { GET_ROCKETS } from '../../models/queries/rockets'
+import { Spinner } from 'react-native-ui-kitten'
+
+import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
 
 export const Rockets = () =>
 {
@@ -27,36 +39,55 @@ export const Rockets = () =>
   }
   
   return (
-    <ScrollView>
-      <Query query={GET_ROCKETS}>
+    <Query query={GET_ROCKETS}>
+      {
+        (res: any) =>
         {
-          ({res, err}) =>
-          {
-            if(err)
-              return (
-                <Text style={styles.errorText}>{err}</Text>
-              )
-      
-            if(res.loading && !res.data)
-              return (
-                <Text>Loading ...</Text>
-              )
-            
+          // if(err)
+          //   return (
+          //     <Text style={styles.errorText}>{err}</Text>
+          //   )
+          
+          if(res.loading && !res.data)
             return (
+              <View style={styles.loadingContainer}>
+                <View style={styles.spinner}>
+                  <Spinner status='warning'/>
+                </View>
+              </View>
+            )
+          
+          return (
+            <ScrollView>
               <FlatList
                 data={res.data.rockets}
                 renderItem={(item) => _renderItem(item)}
               />
-            )
-          }
+            </ScrollView>
+          )
         }
-      </Query>
-    </ScrollView>
+      }
+    </Query>
   )
 }
 
 const styles = StyleSheet.create(
 {
+  loadingContainer:
+  {
+    flex: 1,
+    width: D_WIDTH
+  },
+  spinner:
+  {
+    display: 'flex',
+    alignItems: 'center',
+    marginTop: D_HEIGHT / 2,
+    transform:
+    [
+      { translateY: -D_HEIGHT / 12.5 }
+    ]
+  },
   container:
   {
     flex: 1, //Instead of do 100% of height and width, just use flex: 1,
@@ -72,9 +103,9 @@ const styles = StyleSheet.create(
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    borderWidth: 2,
+    borderWidth: 1,
     borderStyle: 'solid',
-    borderColor: 'black'
+    borderColor: 'gray'
   },
   itemText:
   {
