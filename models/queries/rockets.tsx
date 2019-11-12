@@ -1,8 +1,10 @@
 import gql from "graphql-tag";
 
 export const GET_ROCKETS = gql`
-  query Rocket {
-    rockets {
+  query Rocket
+  {
+    rockets
+    {
       active
       boosters
       company
@@ -14,4 +16,4 @@ export const GET_ROCKETS = gql`
       id
     }
   }
-`;
+`

@@ -12,11 +12,11 @@ import
 import { Spinner } from 'native-base'
 import { Query } from 'react-apollo'
 
-import { GET_ROCKETS } from '../../models/queries/rockets'
+import { GET_PREVIOUS_LAUNCHES } from '../../models/queries/launchesPast'
 
 import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
 
-export const Rockets = () =>
+export const Launches = () =>
 {
   const _renderItem = ({item}) =>
   {
@@ -39,7 +39,7 @@ export const Rockets = () =>
   }
   
   return (
-    <Query query={GET_ROCKETS}>
+    <Query query={GET_PREVIOUS_LAUNCHES}>
       {
         (res: any) =>
         {
@@ -47,6 +47,8 @@ export const Rockets = () =>
           //   return (
           //     <Text style={styles.errorText}>{err}</Text>
           //   )
+          
+
           
           if(res.loading && !res.data)
             return (
@@ -59,10 +61,11 @@ export const Rockets = () =>
           
           return (
             <ScrollView>
-              <FlatList
-                data={res.data.rockets}
+              <Text>{res.data}</Text>
+              {/* <FlatList
+                data={res.data}
                 renderItem={(item) => _renderItem(item)}
-              />
+              /> */}
             </ScrollView>
           )
         }

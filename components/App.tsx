@@ -15,79 +15,38 @@ import
 {
   ImageProps,
   ImageStyle,
-  StyleSheet
+  StyleSheet,
+  
 } from 'react-native'
-import
-{
-  ApplicationProvider,
-  Button,
-  Icon,
-  IconRegistry,
-  Layout,
-  Text
-} from 'react-native-ui-kitten'
-import
-{
-  mapping,
-  light as theme,
-} from '@eva-design/eva'
-import { EvaIconsPack } from '@ui-kitten/eva-icons'
-import BottomNavigations from './navigations/BottomTab'
+import Navigator from './navigations/BottomTab'
 
-import { ApolloProvider } from 'react-apollo'; 
-import
-{
-  ApolloClient,
-  InMemoryCache,
-  HttpLink
-} from 'apollo-client-preset';
-import { Rockets } from './screens/Rockets'
+import { ApolloProvider } from 'react-apollo'
+import { client } from './client'
 
-/**
- * Use any valid `name` property from eva icons (e.g `github`, or `heart-outline`)
- * https://akveo.github.io/eva-icons
- */
 const HeartIcon = (style: ImageStyle): React.ReactElement<ImageProps> => (
   <Icon {...style} name='heart'/>
 )
-  
+
 type Props = {}
 const App = (): React.ReactFragment => (
   <ApolloProvider client={client}>
     <React.Fragment>
-      <IconRegistry icons={EvaIconsPack}/>
-      <ApplicationProvider mapping={mapping} theme={theme}>
-        <Layout style={styles.container}>
-          <Rockets/>
-          {/* <Text style={styles.text} category='h1'>
-            Welcome to UI Kitten 😻
-          </Text>
-          <Text style={styles.text} category='s1'>
-            Start with editing App.js to configure your App
-          </Text>
-          <Text style={styles.text} appearance='hint'>
-            For example, try changing theme to Dark by simply changing an import
-          </Text>
-          <Button style={styles.likeButton} icon={HeartIcon}>
-            LIKE
-          </Button> */}
-        </Layout>
-        <BottomNavigations/>
-      </ApplicationProvider>
+        {/* <Text style={styles.text} category='h1'>
+          Welcome to UI Kitten 😻
+        </Text>
+        <Text style={styles.text} category='s1'>
+          Start with editing App.js to configure your App
+        </Text>
+        <Text style={styles.text} appearance='hint'>
+          For example, try changing theme to Dark by simply changing an import
+        </Text>
+        <Button style={styles.likeButton} icon={HeartIcon}>
+          LIKE
+        </Button> */}
+      <Navigator/>
     </React.Fragment>
   </ApolloProvider>
 )
-
-const client = new ApolloClient(
-{
-  //Assign to your cache property a instance of a InMemoryCache
-  cache: new InMemoryCache(),
-  //Assign your link with a new instance of a HttpLink linking to your graphql server.
-  link: new HttpLink(
-  {
-    uri: 'https://api.spacex.land/graphql/',
-  })
-})
 
 const styles = StyleSheet.create(
 {
@@ -97,14 +56,14 @@ const styles = StyleSheet.create(
     justifyContent: 'center',
     alignItems: 'center',
   },
-  text:
-  {
-    textAlign: 'center',
-  },
-  likeButton:
-  {
-    marginVertical: 16,
-  },
+  // text:
+  // {
+  //   textAlign: 'center',
+  // },
+  // likeButton:
+  // {
+  //   marginVertical: 16,
+  // },
 })
 
 export default App
