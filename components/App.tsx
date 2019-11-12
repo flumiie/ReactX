@@ -21,7 +21,7 @@ import
 import Navigator from './navigations/BottomTab'
 
 import { ApolloProvider } from 'react-apollo'
-import { client } from './client'
+import setup from './client'
 
 const HeartIcon = (style: ImageStyle): React.ReactElement<ImageProps> => (
   <Icon {...style} name='heart'/>
@@ -29,7 +29,7 @@ const HeartIcon = (style: ImageStyle): React.ReactElement<ImageProps> => (
 
 type Props = {}
 const App = (): React.ReactFragment => (
-  <ApolloProvider client={client}>
+  <ApolloProvider client={setup}>
     <React.Fragment>
         {/* <Text style={styles.text} category='h1'>
           Welcome to UI Kitten 😻

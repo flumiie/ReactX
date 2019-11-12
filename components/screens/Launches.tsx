@@ -10,11 +10,11 @@ import
   Text
 } from 'react-native'
 import { Spinner } from 'native-base'
-import { Query } from 'react-apollo'
 
 import { GET_PREVIOUS_LAUNCHES } from '../../models/queries/launchesPast'
 
 import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
+import { Query } from 'react-apollo'
 
 export const Launches = () =>
 {
@@ -56,7 +56,17 @@ export const Launches = () =>
                 </View>
               </View>
             )
-          
+
+          if(!res.data)
+            return (
+              <View style={styles.loadingContainer}>
+                <View style={styles.spinner}>
+                  <Text>We're having trouble loading the data ...</Text>
+                  <Text>Please try it again later</Text>
+                </View>
+              </View>
+            )
+
           return (
             <ScrollView>
               <FlatList

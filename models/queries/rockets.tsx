@@ -3,7 +3,7 @@ import gql from "graphql-tag";
 export const GET_ROCKETS = gql`
   query Rocket
   {
-    rockets
+    rockets(limit: 10)
     {
       active
       boosters

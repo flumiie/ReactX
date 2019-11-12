@@ -16,6 +16,6 @@ const BottomNavigator = createMaterialBottomTabNavigator(
   barStyle: { backgroundColor: '#694fad' },
 })
   
-const Navigator = createAppContainer(BottomNavigator);
+const Navigator = createAppContainer(BottomNavigator)
 
 export default Navigator
