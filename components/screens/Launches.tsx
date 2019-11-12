@@ -48,8 +48,6 @@ export const Launches = () =>
           //     <Text style={styles.errorText}>{err}</Text>
           //   )
           
-
-          
           if(res.loading && !res.data)
             return (
               <View style={styles.loadingContainer}>
@@ -61,11 +59,10 @@ export const Launches = () =>
           
           return (
             <ScrollView>
-              <Text>{res.data}</Text>
-              {/* <FlatList
+              <FlatList
                 data={res.data}
                 renderItem={(item) => _renderItem(item)}
-              /> */}
+              />
             </ScrollView>
           )
         }
