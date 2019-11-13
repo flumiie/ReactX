@@ -4,25 +4,24 @@ import
   StyleSheet,
   Platform,
   ScrollView,
-  TouchableOpacity,
   FlatList,
   View,
   Text
 } from 'react-native'
 import { Spinner } from 'native-base'
-
-import { GET_PREVIOUS_LAUNCHES } from '../../models/queries/launchesPast'
-
-import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
 import { Query } from 'react-apollo'
 
-const Launches = () =>
+import { GET_ROCKET_DETAILS } from '../../models/queries/rockets'
+
+import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
+
+const RocketDetails = () =>
 {
   const _renderItem = ({item}) =>
   {
     return (
-      <TouchableOpacity style={styles.itemContainer}>
-        <Text style={styles.itemText}>ID: {item.id}</Text>
+      <View style={styles.itemContainer}>
+        <Text style={styles.itemText}>{item.name}</Text>
         <Text style={styles.itemText}>Active: {item.active.toString()}</Text>
         <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
         <Text style={styles.itemText}>Company: {item.company}</Text>
@@ -34,12 +33,12 @@ const Launches = () =>
         <Text style={[styles.itemText, item.description ? styles.descriptionText : styles.errorText]}>
           Description: {item.description}
         </Text>
-      </TouchableOpacity>
+      </View>
     )
   }
   
   return (
-    <Query query={GET_PREVIOUS_LAUNCHES}>
+    <Query query={GET_ROCKET_DETAILS}>
       {
         (res: any) =>
         {
@@ -56,21 +55,11 @@ const Launches = () =>
                 </View>
               </View>
             )
-
-          if(!res.data)
-            return (
-              <View style={styles.loadingContainer}>
-                <View style={styles.spinner}>
-                  <Text>We're having trouble loading the data ...</Text>
-                  <Text>Please try it again later</Text>
-                </View>
-              </View>
-            )
-
+          
           return (
             <ScrollView>
               <FlatList
-                data={res.data}
+                data={res.data.rocket}
                 renderItem={(item) => _renderItem(item)}
               />
             </ScrollView>
@@ -144,4 +133,4 @@ const styles = StyleSheet.create(
   }
 })
 
-export default Launches
+export default RocketDetails

@@ -7,7 +7,8 @@ import
   TouchableOpacity,
   FlatList,
   View,
-  Text
+  Text,
+  Alert
 } from 'react-native'
 import { Spinner } from 'native-base'
 import { Query } from 'react-apollo'
@@ -15,31 +16,37 @@ import { Query } from 'react-apollo'
 import { GET_ROCKETS } from '../../models/queries/rockets'
 
 import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
+import { NavigationActions } from 'react-navigation'
 
-const Rockets = () =>
+const openRocketDetails = (item: any, props) =>
+{
+  props.navigation.dispatch(
+    NavigationActions.navigate(
+    {
+      routeName: 'RocketDetails',
+      params:
+      {
+        id: item.id
+      }
+    })
+  )
+}
+
+const Rockets = (props) =>
 {
   const _renderItem = ({item}) =>
   {
     return (
-      <TouchableOpacity style={styles.itemContainer}>
+      <TouchableOpacity style={styles.itemContainer} onPress={() => openRocketDetails(item, props)}>
         <Text style={styles.itemText}>ID: {item.id}</Text>
-        <Text style={styles.itemText}>Active: {item.active.toString()}</Text>
-        <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
-        <Text style={styles.itemText}>Company: {item.company}</Text>
-        <Text style={styles.itemText}>Country: {item.country}</Text>
-        {/* <Text style={styles.itemText}>Diameter: {item.diameter}</Text> */}
-        {/* <Text style={styles.itemText}>Engines: {item.engines}</Text> */}
-        <Text style={styles.itemText}>Cost per Launch: {item.cost_per_launch}</Text>
-        <Text style={styles.itemText}>Boosters: {item.boosters}</Text>
-        <Text style={[styles.itemText, item.description ? styles.descriptionText : styles.errorText]}>
-          Description: {item.description}
-        </Text>
+        <Text style={styles.itemText}>Active: {item.name}</Text>
+        <Text style={styles.itemText}>First Flight: {item.active}</Text>
       </TouchableOpacity>
     )
   }
   
   return (
-    <Query query={GET_ROCKETS}>
+    <Query query={GET_ROCKETS} variables={{id: 'falcon9'}}>
       {
         (res: any) =>
         {
@@ -52,7 +59,7 @@ const Rockets = () =>
             return (
               <View style={styles.loadingContainer}>
                 <View style={styles.spinner}>
-                  <Spinner status='alternative'/>
+                  <Spinner color='blue'/>
                 </View>
               </View>
             )
@@ -132,6 +139,12 @@ const styles = StyleSheet.create(
   {
     color: 'green',
   }
+})
+
+Rockets.navigationOptions = ({ navigation }) => (
+{
+  title: 'Rocket Details',
+
 })
 
 export default Rockets

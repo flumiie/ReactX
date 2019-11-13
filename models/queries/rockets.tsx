@@ -5,15 +5,123 @@ export const GET_ROCKETS = gql`
   {
     rockets(limit: 10)
     {
-      active
-      boosters
-      company
-      cost_per_launch
-      country
-      description
-      # engines
-      first_flight
       id
+      name
+      active
+    }
+  }
+`
+
+export const GET_ROCKET_DETAILS = gql`
+  query Rocket($id: String!)
+  {
+    rocket(id: $id)
+    {
+      id
+      landing_legs
+      {
+        number
+        material
+      }
+      boosters
+      active
+      company
+      country
+      cost_per_launch
+      description
+      diameter
+      {
+        feet
+        meters
+      }
+      engines
+      {
+        engine_loss_max
+        layout
+        number
+        propellant_1
+        propellant_2
+        thrust_sea_level
+        {
+          kN
+          lbf
+        }
+        thrust_to_weight
+        thrust_vacuum
+        {
+          kN
+        }
+        type
+        version
+      }
+      first_flight
+      first_stage
+      {
+        burn_time_sec
+        engines
+        fuel_amount_tons
+        reusable
+        thrust_sea_level
+        {
+          kN
+          lbf
+        }
+        thrust_vacuum
+        {
+          kN
+          lbf
+        }
+      }
+      height
+      {
+        meters
+        feet
+      }
+      mass
+      {
+        kg
+        lb
+      }
+      name
+      payload_weights
+      {
+        id
+        kg
+        lb
+        name
+      }
+      second_stage
+      {
+        burn_time_sec
+        engines
+        fuel_amount_tons
+        payloads
+        {
+          composite_fairing
+          {
+            diameter
+            {
+              feet
+              meters
+            }
+            height
+            {
+              feet
+              meters
+            }
+          }
+          option_1
+        }
+        thrust
+        {
+          kN
+          lbf
+        }
+      }
+      wikipedia
+      type
+      success_rate_pct
+      stages
     }
   }
 `

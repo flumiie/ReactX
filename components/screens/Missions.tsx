@@ -12,7 +12,7 @@ import
   View,
 } from 'react-native'
 import { Query } from 'react-apollo'
-import { Spinner } from 'react-native-ui-kitten'
+import { Spinner } from 'native-base'
 import
 {
   D_HEIGHT,
@@ -56,7 +56,7 @@ const Missions = () =>
             return (
               <View style={styles.loadingContainer}>
                 <View style={styles.spinner}>
-                  <Spinner status='alternative'/>
+                  <Spinner color='blue'/>
                 </View>
               </View>
             )
