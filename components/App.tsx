@@ -1,6 +1,5 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
-import Navigator from './navigations/BottomTab'
 
 import { ApolloProvider } from 'react-apollo'
 import setup from './client'
@@ -10,7 +9,6 @@ type Props = {}
 const App = (): React.ReactFragment => (
   <ApolloProvider client={setup}>
     <React.Fragment>
-      <Navigator/>
       <AppContents/>
     </React.Fragment>
   </ApolloProvider>

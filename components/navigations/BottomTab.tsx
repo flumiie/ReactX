@@ -1,13 +1,15 @@
 import { createAppContainer } from 'react-navigation';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
-import { Rockets } from '../screens/Rockets'
-import { Launches } from '../screens/Launches'
+import Rockets from '../screens/Rockets'
+import Launches from '../screens/Launches'
+import Missions from '../screens/Missions'
 
 const BottomNavigator = createMaterialBottomTabNavigator(
 {
   Rockets: { screen: Rockets },
   Launches: { screen: Launches },
+  Missions: { screen: Missions }
 },
 {
   initialRouteName: 'Rockets',

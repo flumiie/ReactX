@@ -10,7 +10,8 @@ import
   Layout,
   Icon
 } from 'react-native-ui-kitten'
-import { Rockets } from './screens/Rockets'
+import Navigator from './navigations/BottomTab'
+// import Rockets from './screens/Rockets'
 
 /**
  * Use any valid `name` property from eva icons (e.g `github`, or `heart-outline`)
@@ -24,7 +25,7 @@ const AppContents = () =>
 {
   return (
     <Layout style={styles.container}>
-      <Rockets/>
+      <Navigator/>
     </Layout>
   )
 }

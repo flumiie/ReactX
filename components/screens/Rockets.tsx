@@ -16,7 +16,7 @@ import { GET_ROCKETS } from '../../models/queries/rockets'
 
 import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
 
-export const Rockets = () =>
+const Rockets = () =>
 {
   const _renderItem = ({item}) =>
   {
@@ -52,7 +52,7 @@ export const Rockets = () =>
             return (
               <View style={styles.loadingContainer}>
                 <View style={styles.spinner}>
-                  <Spinner color='blue'/>
+                  <Spinner status='alternative'/>
                 </View>
               </View>
             )
@@ -133,3 +133,5 @@ const styles = StyleSheet.create(
     color: 'green',
   }
 })
+
+export default Rockets

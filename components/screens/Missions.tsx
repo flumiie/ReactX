@@ -1,22 +1,26 @@
+// 11:59 AM Screen for List of Missions
+
 import React from 'react'
 import
 {
-  StyleSheet,
   Platform,
-  ScrollView,
+  StyleSheet,
   TouchableOpacity,
+  ScrollView,
   FlatList,
+  Text,
   View,
-  Text
 } from 'react-native'
-import { Spinner } from 'native-base'
-
+import { Query } from 'react-apollo'
+import { Spinner } from 'react-native-ui-kitten'
+import
+{
+  D_HEIGHT,
+  D_WIDTH
+} from '../../models/dimensions'
 import { GET_PREVIOUS_LAUNCHES } from '../../models/queries/launchesPast'
 
-import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
-import { Query } from 'react-apollo'
-
-const Launches = () =>
+const Missions = () =>
 {
   const _renderItem = ({item}) =>
   {
@@ -144,4 +148,4 @@ const styles = StyleSheet.create(
   }
 })
 
-export default Launches
+export default Missions
