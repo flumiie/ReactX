@@ -32,21 +32,24 @@ const openRocketDetails = (item: any, props) =>
   )
 }
 
-const Rockets = (props) =>
+const Rockets = (props: any) =>
 {
   const _renderItem = ({item}) =>
   {
     return (
       <TouchableOpacity style={styles.itemContainer} onPress={() => openRocketDetails(item, props)}>
-        <Text style={styles.itemText}>ID: {item.id}</Text>
-        <Text style={styles.itemText}>Active: {item.name}</Text>
-        <Text style={styles.itemText}>First Flight: {item.active}</Text>
+        <Text style={styles.itemText}>Name: {item.name}</Text>
+        <Text style={styles.itemText}>Is Active: {
+          item.active == true
+          ? 'Active'
+          : 'Not Active'
+        }</Text>
       </TouchableOpacity>
     )
   }
   
   return (
-    <Query query={GET_ROCKETS} variables={{id: 'falcon9'}}>
+    <Query query={GET_ROCKETS}>
       {
         (res: any) =>
         {
@@ -143,8 +146,7 @@ const styles = StyleSheet.create(
 
 Rockets.navigationOptions = ({ navigation }) => (
 {
-  title: 'Rocket Details',
-
+  title: 'Rockets',
 })
 
 export default Rockets

@@ -15,14 +15,20 @@ import { GET_ROCKET_DETAILS } from '../../models/queries/rockets'
 
 import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
 
-const RocketDetails = () =>
+const RocketDetails = (props: any) =>
 {
+  const rocketID = props.navigation.state.params.id
+
   const _renderItem = ({item}) =>
   {
     return (
       <View style={styles.itemContainer}>
         <Text style={styles.itemText}>{item.name}</Text>
-        <Text style={styles.itemText}>Active: {item.active.toString()}</Text>
+        <Text style={styles.itemText}>Is Active: {
+          item.active == true
+          ? 'Active'
+          : 'Not Active'
+        }</Text>
         <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
         <Text style={styles.itemText}>Company: {item.company}</Text>
         <Text style={styles.itemText}>Country: {item.country}</Text>
@@ -38,7 +44,10 @@ const RocketDetails = () =>
   }
   
   return (
-    <Query query={GET_ROCKET_DETAILS}>
+    <Query
+      query={GET_ROCKET_DETAILS}
+      variables={{ id: rocketID }}
+    >
       {
         (res: any) =>
         {
@@ -55,6 +64,8 @@ const RocketDetails = () =>
                 </View>
               </View>
             )
+
+          console.log(props)
           
           return (
             <ScrollView>
@@ -131,6 +142,11 @@ const styles = StyleSheet.create(
   {
     color: 'green',
   }
+})
+
+RocketDetails.navigationOptions = ({ navigation }) => (
+{
+  title: 'Rocket Details',
 })
 
 export default RocketDetails

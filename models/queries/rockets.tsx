@@ -13,11 +13,10 @@ export const GET_ROCKETS = gql`
 `
 
 export const GET_ROCKET_DETAILS = gql`
-  query Rocket($id: String!)
+  query Rocket($id: ID!)
   {
     rocket(id: $id)
     {
-      id
       landing_legs
       {
         number
