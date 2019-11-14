@@ -19,6 +19,7 @@ import
   D_WIDTH
 } from '../../models/dimensions'
 import { GET_PREVIOUS_LAUNCHES } from '../../models/queries/launchesPast'
+import { GET_MISSIONS } from '../../models/queries/missions'
 
 const Missions = () =>
 {
@@ -27,14 +28,12 @@ const Missions = () =>
     return (
       <TouchableOpacity style={styles.itemContainer}>
         <Text style={styles.itemText}>ID: {item.id}</Text>
-        <Text style={styles.itemText}>Active: {item.active.toString()}</Text>
-        <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
-        <Text style={styles.itemText}>Company: {item.company}</Text>
-        <Text style={styles.itemText}>Country: {item.country}</Text>
-        {/* <Text style={styles.itemText}>Diameter: {item.diameter}</Text> */}
-        {/* <Text style={styles.itemText}>Engines: {item.engines}</Text> */}
-        <Text style={styles.itemText}>Cost per Launch: {item.cost_per_launch}</Text>
-        <Text style={styles.itemText}>Boosters: {item.boosters}</Text>
+        <Text style={styles.itemText}>Name: {item.name}</Text>
+        <Text style={styles.itemText}>Manufacturers: {item.manufacturers}</Text>
+        <Text style={styles.itemText}>Twitter: {item.twitter}</Text>
+        <Text style={styles.itemText}>Payloads: {item.payloads}</Text>
+        <Text style={styles.itemText}>Wikipedia: {item.wikipedia}</Text>
+        <Text style={styles.itemText}>Website: {item.website}</Text>
         <Text style={[styles.itemText, item.description ? styles.descriptionText : styles.errorText]}>
           Description: {item.description}
         </Text>
@@ -43,7 +42,7 @@ const Missions = () =>
   }
   
   return (
-    <Query query={GET_PREVIOUS_LAUNCHES}>
+    <Query query={GET_MISSIONS}>
       {
         (res: any) =>
         {
@@ -74,7 +73,7 @@ const Missions = () =>
           return (
             <ScrollView>
               <FlatList
-                data={res.data}
+                data={res.data.missions}
                 renderItem={(item) => _renderItem(item)}
               />
             </ScrollView>
