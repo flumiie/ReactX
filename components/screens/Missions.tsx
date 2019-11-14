@@ -1,29 +1,26 @@
-// 11:59 AM Screen for List of Missions
-
 import React from 'react'
 import
 {
   Platform,
   StyleSheet,
-  TouchableOpacity,
   ScrollView,
+  TouchableOpacity,
   FlatList,
-  Text,
   View,
+  Text
 } from 'react-native'
-import { Query } from 'react-apollo'
 import { Spinner } from 'native-base'
+import { Query } from 'react-apollo'
 import
 {
   D_HEIGHT,
   D_WIDTH
 } from '../../models/dimensions'
-import { GET_PREVIOUS_LAUNCHES } from '../../models/queries/launchesPast'
 import { GET_MISSIONS } from '../../models/queries/missions'
 
 const Missions = () =>
 {
-  const _renderItem = ({item}) =>
+  const _renderItem = ({ item }) =>
   {
     return (
       <TouchableOpacity style={styles.itemContainer}>

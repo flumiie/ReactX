@@ -1,8 +1,8 @@
 import React from 'react'
 import
 {
-  StyleSheet,
   Platform,
+  StyleSheet,
   ScrollView,
   TouchableOpacity,
   FlatList,
@@ -10,15 +10,17 @@ import
   Text
 } from 'react-native'
 import { Spinner } from 'native-base'
-
-import { GET_PREVIOUS_LAUNCHES } from '../../models/queries/launchesPast'
-
-import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
 import { Query } from 'react-apollo'
+import
+{
+  D_HEIGHT,
+  D_WIDTH
+} from '../../models/dimensions'
+import { GET_PREVIOUS_LAUNCHES } from '../../models/queries/launchesPast'
 
 const Launches = () =>
 {
-  const _renderItem = ({item}) =>
+  const _renderItem = ({ item }) =>
   {
     return (
       <TouchableOpacity style={styles.itemContainer}>

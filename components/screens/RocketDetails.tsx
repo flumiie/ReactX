@@ -1,8 +1,8 @@
 import React from 'react'
 import
 {
-  StyleSheet,
   Platform,
+  StyleSheet,
   ScrollView,
   FlatList,
   View,
@@ -10,25 +10,23 @@ import
 } from 'react-native'
 import { Spinner } from 'native-base'
 import { Query } from 'react-apollo'
-
+import
+{
+  D_HEIGHT,
+  D_WIDTH
+} from '../../models/dimensions'
 import { GET_ROCKET_DETAILS } from '../../models/queries/rockets'
-
-import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
 
 const RocketDetails = (props: any) =>
 {
   const rocketID = props.navigation.state.params.id
 
-  const _renderItem = ({item}) =>
+  const _renderItem = ({ item }) =>
   {
     return (
       <View style={styles.itemContainer}>
         <Text style={styles.itemText}>{item.name}</Text>
-        <Text style={styles.itemText}>Is Active: {
-          item.active == true
-          ? 'Active'
-          : 'Not Active'
-        }</Text>
+        <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
         <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
         <Text style={styles.itemText}>Company: {item.company}</Text>
         <Text style={styles.itemText}>Country: {item.country}</Text>

@@ -1,26 +1,28 @@
 import React from 'react'
 import
 {
-  StyleSheet,
   Platform,
+  StyleSheet,
   ScrollView,
   TouchableOpacity,
   FlatList,
   View,
-  Text,
-  Alert
+  Text
 } from 'react-native'
+import { NavigationActions } from 'react-navigation'
 import { Spinner } from 'native-base'
 import { Query } from 'react-apollo'
-
+import
+{
+  D_HEIGHT,
+  D_WIDTH
+} from '../../models/dimensions'
 import { GET_ROCKETS } from '../../models/queries/rockets'
 
-import { D_WIDTH, D_HEIGHT } from '../../models/dimensions'
-import { NavigationActions } from 'react-navigation'
 
-const openRocketDetails = (item: any, props) =>
+const openRocketDetails = (item: any, navigation: any) =>
 {
-  props.navigation.dispatch(
+  navigation.dispatch(
     NavigationActions.navigate(
     {
       routeName: 'RocketDetails',
@@ -34,16 +36,12 @@ const openRocketDetails = (item: any, props) =>
 
 const Rockets = (props: any) =>
 {
-  const _renderItem = ({item}) =>
+  const _renderItem = ({ item }) =>
   {
     return (
-      <TouchableOpacity style={styles.itemContainer} onPress={() => openRocketDetails(item, props)}>
+      <TouchableOpacity style={styles.itemContainer} onPress={() => openRocketDetails(item, props.navigation)}>
         <Text style={styles.itemText}>Name: {item.name}</Text>
-        <Text style={styles.itemText}>Is Active: {
-          item.active == true
-          ? 'Active'
-          : 'Not Active'
-        }</Text>
+        <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
       </TouchableOpacity>
     )
   }

@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet } from 'react-native'
 
 import { ApolloProvider } from 'react-apollo'
 import setup from './client'
