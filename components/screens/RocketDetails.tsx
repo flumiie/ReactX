@@ -19,7 +19,7 @@ import { GET_ROCKET_DETAILS } from '../../models/queries/rockets'
 
 const RocketDetails = (props: any) =>
 {
-  const rocketID = props.navigation.state.params.id
+  const rocketID = props.navigation.state.params.rocketID
 
   const _renderItem = ({ item }) =>
   {
@@ -62,8 +62,6 @@ const RocketDetails = (props: any) =>
                 </View>
               </View>
             )
-
-          console.log(props)
           
           return (
             <ScrollView>

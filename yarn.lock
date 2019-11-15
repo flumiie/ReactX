@@ -4451,6 +4451,11 @@ react-native-paper@^3.2.1:
     color "^3.1.2"
     react-native-safe-area-view "^0.12.0"
 
+react-native-really-awesome-button@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/react-native-really-awesome-button/-/react-native-really-awesome-button-1.4.2.tgz#db25835f4eb3abe8ac04491db6a509777785c8c8"
+  integrity sha512-di2oPh0PnRGBLcCQ25v3OSplG1g9yFCd31ZvMQe6yLaMyq9yUb9o/Ot85Kj9tegHx1bmVda1zEuFHZLvYBBRFA==
+
 react-native-reanimated@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.4.0.tgz#7f1acbf9be08492d834f512700570978052be2f9"
