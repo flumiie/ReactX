@@ -6,9 +6,11 @@ import
   ScrollView,
   FlatList,
   View,
-  Text
+  Text,
+  Animated,
+  Easing
 } from 'react-native'
-import { Spinner } from 'native-base'
+import { Spinner, Container } from 'native-base'
 import { Query } from 'react-apollo'
 import
 {
@@ -17,29 +19,12 @@ import
 } from '../../models/dimensions'
 import { GET_ROCKET_DETAILS } from '../../models/queries/rockets'
 
+import ModelView from 'react-native-gl-model-view'
+
 const RocketDetails = (props: any) =>
 {
   const rocketID = props.navigation.state.params.rocketID
-
-  const _renderItem = ({ item }) =>
-  {
-    return (
-      <View style={styles.itemContainer}>
-        <Text style={styles.itemText}>{item.name}</Text>
-        <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
-        <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
-        <Text style={styles.itemText}>Company: {item.company}</Text>
-        <Text style={styles.itemText}>Country: {item.country}</Text>
-        {/* <Text style={styles.itemText}>Diameter: {item.diameter}</Text> */}
-        {/* <Text style={styles.itemText}>Engines: {item.engines}</Text> */}
-        <Text style={styles.itemText}>Cost per Launch: {item.cost_per_launch}</Text>
-        <Text style={styles.itemText}>Boosters: {item.boosters}</Text>
-        <Text style={[styles.itemText, item.description ? styles.descriptionText : styles.errorText]}>
-          Description: {item.description}
-        </Text>
-      </View>
-    )
-  }
+  const AnimatedModelView = Animated.createAnimatedComponent(ModelView);
   
   return (
     <Query
@@ -62,13 +47,37 @@ const RocketDetails = (props: any) =>
                 </View>
               </View>
             )
-          
+
+          const item = res.data.rocket
           return (
             <ScrollView>
-              <FlatList
-                data={res.data.rocket}
-                renderItem={(item) => _renderItem(item)}
-              />
+              <Container style={styles.container}>
+                <Text style={styles.itemText}>{item.name}</Text>
+                <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
+                <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
+                <Text style={styles.itemText}>Company: {item.company}</Text>
+                <Text style={styles.itemText}>Country: {item.country}</Text>
+                {/* <Text style={styles.itemText}>Diameter: {item.diameter}</Text> */}
+                {/* <Text style={styles.itemText}>Engines: {item.engines}</Text> */}
+                <Text style={styles.itemText}>Cost per Launch: {item.cost_per_launch}</Text>
+                <Text style={styles.itemText}>Boosters: {item.boosters}</Text>
+                <Text style={[styles.itemText, item.description ? styles.descriptionText : styles.errorText]}>
+                  Description: {item.description}
+                </Text>
+
+                {/* <ModelView
+                  model={{
+                    uri: '../../models/3d/falcon9.obj',
+                  }}
+                  // texture={{
+                  //   uri: 'texture.png',
+                  // }}
+                  scale={0.01}
+                  translateZ={-2}
+                  rotateZ={270}
+                  style={{ flex: 1 }}
+                /> */}
+              </Container>
             </ScrollView>
           )
         }
@@ -79,6 +88,10 @@ const RocketDetails = (props: any) =>
 
 const styles = StyleSheet.create(
 {
+  container:
+  {
+    flex: 1,
+  },
   loadingContainer:
   {
     flex: 1,
@@ -94,24 +107,10 @@ const styles = StyleSheet.create(
       { translateY: -D_HEIGHT / 12.5 }
     ]
   },
-  container:
-  {
-    flex: 1, //Instead of do 100% of height and width, just use flex: 1,
-  },
   headerText:
   {
     fontSize: 30,
     marginTop: 30,
-  },
-  itemContainer:
-  {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'gray'
   },
   itemText:
   {

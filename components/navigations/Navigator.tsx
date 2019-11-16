@@ -9,8 +9,22 @@ import Missions from '../screens/Missions'
 
 const BottomTabNavigator = createMaterialBottomTabNavigator(
 {
-  Rockets: { screen: Rockets },
-  Launches: { screen: Launches },
+  Rockets:
+  {
+    screen: Rockets,
+    navigationOptions:
+    {
+      tabBarOnPress: ({ navigation, defaultHandler }) =>
+      {
+        const routeName = navigation.state.routeName
+        console.log(navigation)
+      },
+    }
+  },
+  Launches:
+  {
+    screen: Launches,
+  },
   Missions: { screen: Missions },
 },
 {
@@ -28,7 +42,10 @@ const Screens = createStackNavigator(
       header: null
     }
   },
-  RocketDetails: { screen: RocketDetails },
+  RocketDetails:
+  {
+    screen: RocketDetails,
+  },
 },
 {
   initialRouteName: 'Main',

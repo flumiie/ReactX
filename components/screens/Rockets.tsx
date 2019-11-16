@@ -16,7 +16,6 @@ import
   Grid,
   Col
 } from 'native-base'
-import AwesomeButton from "react-native-really-awesome-button";
 import { Query } from 'react-apollo'
 import
 {
@@ -24,6 +23,8 @@ import
   D_WIDTH
 } from '../../models/dimensions'
 import { GET_ROCKETS } from '../../models/queries/rockets'
+
+import AwesomeButton from 'react-native-really-awesome-button/src/themes/bruce'
 
 const openRocketDetails = (itemID: any, navigation: any) =>
 {
@@ -45,15 +46,19 @@ const Rockets = (props: any) =>
   {
     return (
       <Container style={styles.itemContainer}>
-          <Grid>
+          <Grid style={styles.gridContainer}>
             <Col style={{width: '80%'}}>
               <Text style={styles.itemText}>Name: {item.name}</Text>
               <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
             </Col>
             <Col style={{width: '20%'}}>
-              <AwesomeButton backgroundColor={'red'} onPress={() => openRocketDetails(item.id, props.navigation)}>Details</AwesomeButton>
+              <AwesomeButton
+                onPress={() => openRocketDetails(item.id, props.navigation)}
+              >
+                Details
+              </AwesomeButton>
             </Col>
-          </Grid>        
+          </Grid>
       </Container>
     )
   }
@@ -93,10 +98,6 @@ const Rockets = (props: any) =>
 
 const styles = StyleSheet.create(
 {
-  container:
-  {
-    // flex: 1, //Instead of do 100% of height and width, just use flex: 1,
-  },
   loadingContainer:
   {
     flex: 1,
@@ -115,7 +116,11 @@ const styles = StyleSheet.create(
   headerText:
   {
     fontSize: 30,
-    marginTop: 30,
+    marginTop: 30
+  },
+  gridContainer:
+  {
+    width: '95%'
   },
   itemContainer:
   {
