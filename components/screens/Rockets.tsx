@@ -48,6 +48,22 @@ const Rockets = (props: any) =>
 {
   const _renderItem = ({ item }) =>
   {
+    const rocketImages = () =>
+    {
+      /**
+       * Dynamic names for require()
+       * in React Native is not yet supported
+       */
+      if(item.id == 'falcon1')
+        return require('../../assets/images/falcon1.jpg')
+      if(item.id == 'falcon9')
+        return require('../../assets/images/falcon9.jpg')
+      if(item.id == 'falconheavy')
+        return require('../../assets/images/falconheavy.jpg')
+      if(item.id == 'starship')
+        return require('../../assets/images/starship.jpg')
+    }
+
     return (
       <Content padder>
         <Card
@@ -55,7 +71,7 @@ const Rockets = (props: any) =>
         >
           <CardItem style={styles.cardItem}>
             <ImageBackground
-                source={require('../../assets/images/falcon1.jpg')}
+                source={rocketImages()}
                 style={styles.cardImage}
                 resizeMode='cover'
             >
