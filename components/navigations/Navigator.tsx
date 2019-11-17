@@ -12,14 +12,14 @@ const BottomTabNavigator = createMaterialBottomTabNavigator(
   Rockets:
   {
     screen: Rockets,
-    navigationOptions:
-    {
-      tabBarOnPress: ({ navigation, defaultHandler }) =>
-      {
-        const routeName = navigation.state.routeName
-        console.log(navigation)
-      },
-    }
+    // navigationOptions:
+    // {
+    //   tabBarOnPress: ({ navigation, defaultHandler }) =>
+    //   {
+    //     const routeName = navigation.state.routeName
+    //     console.log(navigation)
+    //   },
+    // }
   },
   Launches:
   {

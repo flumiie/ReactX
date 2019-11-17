@@ -6,15 +6,18 @@ import
   ScrollView,
   FlatList,
   View,
-  Text
+  Text,
+  ImageBackground,
+  Image
 } from 'react-native'
+import LinearGradient from 'react-native-linear-gradient'
 import { NavigationActions } from 'react-navigation'
 import
 {
   Spinner,
-  Container,
-  Grid,
-  Col
+  CardItem,
+  Body,
+  Content
 } from 'native-base'
 import { Query } from 'react-apollo'
 import
@@ -25,6 +28,7 @@ import
 import { GET_ROCKETS } from '../../models/queries/rockets'
 
 import AwesomeButton from 'react-native-really-awesome-button/src/themes/bruce'
+import { Card } from 'react-native-paper'
 
 const openRocketDetails = (itemID: any, navigation: any) =>
 {
@@ -45,21 +49,29 @@ const Rockets = (props: any) =>
   const _renderItem = ({ item }) =>
   {
     return (
-      <Container style={styles.itemContainer}>
-          <Grid style={styles.gridContainer}>
-            <Col style={{width: '80%'}}>
-              <Text style={styles.itemText}>Name: {item.name}</Text>
-              <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
-            </Col>
-            <Col style={{width: '20%'}}>
-              <AwesomeButton
-                onPress={() => openRocketDetails(item.id, props.navigation)}
+      <Content padder>
+        <Card
+          onPress={() => openRocketDetails(item.id, props.navigation)}
+        >
+          <CardItem style={styles.cardItem}>
+            <ImageBackground
+                source={require('../../assets/images/falcon1.jpg')}
+                style={styles.cardImage}
+                resizeMode='cover'
+            >
+              <LinearGradient
+                colors={['black', '#ffffff00']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.textContainer}
               >
-                Details
-              </AwesomeButton>
-            </Col>
-          </Grid>
-      </Container>
+                <Text style={styles.itemTitle}>{item.name}</Text>
+                <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
+              </LinearGradient>
+            </ImageBackground>
+          </CardItem>
+        </Card>
+      </Content>
     )
   }
   
@@ -98,11 +110,6 @@ const Rockets = (props: any) =>
 
 const styles = StyleSheet.create(
 {
-  loadingContainer:
-  {
-    flex: 1,
-    width: D_WIDTH
-  },
   spinner:
   {
     display: 'flex',
@@ -113,19 +120,15 @@ const styles = StyleSheet.create(
       { translateY: -D_HEIGHT / 12.5 }
     ]
   },
-  headerText:
+  
+  loadingContainer:
   {
-    fontSize: 30,
-    marginTop: 30
-  },
-  gridContainer:
-  {
-    width: '95%'
+    flex: 1,
+    width: D_WIDTH
   },
   itemContainer:
   {
     height: '100%',
-    marginTop: 10,
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
@@ -134,9 +137,36 @@ const styles = StyleSheet.create(
     // borderStyle: 'solid',
     // borderColor: 'gray'
   },
+
+  cardItem:
+  {
+    backgroundColor:'#694FAD'
+  },
+  cardImage:
+  {
+    flex: 1,
+    height: 200,
+    margin: -16
+  },
+
+  textContainer:
+  {
+    position: 'absolute',
+    width: '100%',
+    padding: 7,
+    backgroundColor: 'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
+    bottom: 0
+  },
+  itemTitle:
+  {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
   itemText:
   {
-    fontSize: 20,
+    color: 'white',
+    fontSize: 17,
     fontWeight: '500',
     fontFamily: Platform.select(
     {
@@ -144,6 +174,7 @@ const styles = StyleSheet.create(
       android: 'sans-serif-condensed'
     })
   },
+
   errorText:
   {
     fontSize: 20,
