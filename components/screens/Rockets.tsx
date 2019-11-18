@@ -74,11 +74,12 @@ const Rockets = (props: any) =>
                 source={rocketImages()}
                 style={styles.cardImage}
                 resizeMode='cover'
+                borderRadius={5}
             >
               <LinearGradient
                 colors={['black', '#ffffff00']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
+                start={{ x: 0, y: 0.75 }}
+                end={{ x: 0, y: 0 }}
                 style={styles.textContainer}
               >
                 <Text style={styles.itemTitle}>{item.name}</Text>
@@ -156,7 +157,7 @@ const styles = StyleSheet.create(
 
   cardItem:
   {
-    backgroundColor:'#694FAD'
+    backgroundColor: 'transparent', //'#694FAD'
   },
   cardImage:
   {
@@ -170,8 +171,10 @@ const styles = StyleSheet.create(
     position: 'absolute',
     width: '100%',
     padding: 7,
-    backgroundColor: 'linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%)',
-    bottom: 0
+    paddingTop: 15,
+    bottom: 0,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5
   },
   itemTitle:
   {
