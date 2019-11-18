@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import
 {
   Platform,
@@ -28,6 +28,7 @@ import
 import { GET_ROCKETS } from '../../models/queries/rockets'
 
 import AwesomeButton from 'react-native-really-awesome-button/src/themes/bruce'
+import Carousel, { ParallaxImage } from 'react-native-snap-carousel'
 import { Card } from 'react-native-paper'
 
 const openRocketDetails = (itemID: any, navigation: any) =>
@@ -46,24 +47,26 @@ const openRocketDetails = (itemID: any, navigation: any) =>
 
 const Rockets = (props: any) =>
 {
-  const _renderItem = ({ item }) =>
-  {
-    const rocketImages = () =>
-    {
-      /**
-       * Dynamic names for require()
-       * in React Native is not yet supported
-       */
-      if(item.id == 'falcon1')
-        return require('../../assets/images/falcon1.jpg')
-      if(item.id == 'falcon9')
-        return require('../../assets/images/falcon9.jpg')
-      if(item.id == 'falconheavy')
-        return require('../../assets/images/falconheavy.jpg')
-      if(item.id == 'starship')
-        return require('../../assets/images/starship.jpg')
-    }
+  const [animatedCards, setAnimatedCards] = useState(true)
 
+  const rocketImages = (id: any) =>
+  {
+    /**
+     * Dynamic names for require()
+     * in React Native is not yet supported
+     */
+    if(id == 'falcon1')
+      return require('../../assets/images/falcon1.jpg')
+    if(id == 'falcon9')
+      return require('../../assets/images/falcon9.jpg')
+    if(id == 'falconheavy')
+      return require('../../assets/images/falconheavy.jpg')
+    if(id == 'starship')
+      return require('../../assets/images/starship.jpg')
+  }
+  
+  const _renderFlatList = ({ item }) =>
+  {
     return (
       <Content padder>
         <Card
@@ -71,7 +74,7 @@ const Rockets = (props: any) =>
         >
           <CardItem style={styles.cardItem}>
             <ImageBackground
-                source={rocketImages()}
+                source={rocketImages(item.id)}
                 style={styles.cardImage}
                 resizeMode='cover'
                 borderRadius={5}
@@ -88,6 +91,35 @@ const Rockets = (props: any) =>
             </ImageBackground>
           </CardItem>
         </Card>
+      </Content>
+    )
+  }
+
+  const _renderCarousel = ({item, index}, parallaxProps: any) =>
+  {
+    return (
+      <Content
+        onTouchEnd={() => openRocketDetails(item.id, props.navigation)}
+      >
+        <View style={styles.carouselItem}>
+          <ParallaxImage
+            source={rocketImages(item.id)}
+            containerStyle={styles.carouselImageContainer}
+            style={styles.parallaxImage}
+            parallaxFactor={0.4}
+            {...parallaxProps}
+          />
+          <LinearGradient
+            colors={['black', '#ffffff00']}
+            start={{ x: 0, y: 0.75 }}
+            end={{ x: 0, y: 0 }}
+            style={styles.textContainer}
+          >
+            <Text style={styles.itemTitle}>{item.name}</Text>
+            <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
+          </LinearGradient>
+          
+        </View>
       </Content>
     )
   }
@@ -112,12 +144,42 @@ const Rockets = (props: any) =>
             )
           
           return (
-            <ScrollView>
-              <FlatList
-                data={res.data.rockets}
-                renderItem={(item) => _renderItem(item)}
-              />
-            </ScrollView>
+            <View>
+              <ScrollView style={styles.scrollViewContainer}>
+                {
+                  animatedCards
+                  ?  <Carousel
+                        // ref={(c) => { this._carousel = c; }}
+                        data={res.data.rockets}
+                        renderItem={_renderCarousel}
+                        sliderWidth={D_WIDTH}
+                        itemWidth={D_WIDTH/1.2}
+                        hasParallaxImages={true}
+                      />
+                  : <FlatList
+                      data={res.data.rockets}
+                      renderItem={(item) => _renderFlatList(item)}
+                    />
+                } 
+              </ScrollView>
+              <View style={styles.buttonContainer}>
+                <AwesomeButton
+                  height={35}
+                  onPress={() =>
+                    {
+                      if(animatedCards == false) setAnimatedCards(true)
+                      else setAnimatedCards(false)
+                    }
+                  }
+                >
+                  {
+                    animatedCards
+                    ? 'Animated'
+                    : '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Flat\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'
+                  }
+                </AwesomeButton>
+              </View>
+            </View>
           )
         }
       }
@@ -143,6 +205,16 @@ const styles = StyleSheet.create(
     flex: 1,
     width: D_WIDTH
   },
+  scrollViewContainer:
+  {
+    height: '100%'
+  },
+  buttonContainer:
+  {
+    position: 'absolute',
+    bottom: 5,
+    right: 5
+  },
   itemContainer:
   {
     height: '100%',
@@ -155,6 +227,9 @@ const styles = StyleSheet.create(
     // borderColor: 'gray'
   },
 
+  /**
+   * Flat List
+   */
   cardItem:
   {
     backgroundColor: 'transparent', //'#694FAD'
@@ -164,6 +239,26 @@ const styles = StyleSheet.create(
     flex: 1,
     height: 200,
     margin: -16
+  },
+
+  /**
+   * Snap Carousel
+   */
+  carouselItem:
+  {
+    height: D_HEIGHT - D_HEIGHT / 5,
+  },
+  parallaxImage:
+  {
+    ...StyleSheet.absoluteFillObject,
+    resizeMode: 'cover',
+  },
+  carouselImageContainer:
+  {
+    flex: 1,
+    marginTop: 7,
+    marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
+    borderRadius: 8
   },
 
   textContainer:

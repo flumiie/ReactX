@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "start:ios": "react-native run-ios && react-native log-ios",
-    "start:android": "react-native run-android && react-native log-android",
+    "start:ios": "react-native run-ios && react-native start",
+    "start:android": "react-native run-android && react-native start",
     "log": "react-native log-android",
     "shake": "adb shell input keyevent 82",
     "postinstall": "react-native link"
@@ -31,6 +31,7 @@
     "react-native-really-awesome-button": "^1.4.2",
     "react-native-reanimated": "^1.4.0",
     "react-native-screens": "^2.0.0-alpha.8",
+    "react-native-snap-carousel": "^3.8.4",
     "react-native-svg": "^9.9.4",
     "react-native-vector-icons": "^6.6.0",
     "react-navigation": "^4.0.10",
