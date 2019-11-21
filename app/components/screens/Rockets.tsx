@@ -167,15 +167,15 @@ const Rockets = (props: any) =>
                   height={35}
                   onPress={() =>
                     {
-                      if(animatedCards == false) setAnimatedCards(true)
-                      else setAnimatedCards(false)
+                      if(animatedCards) setAnimatedCards(false)
+                      else setAnimatedCards(true)
                     }
                   }
                 >
                   {
                     animatedCards
                     ? 'Animated'
-                    : '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0Flat\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'
+                    : 'Flat'
                   }
                 </AwesomeButton>
               </View>

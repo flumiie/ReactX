@@ -6,24 +6,41 @@ import {
   GraphQLList,
   GraphQLNonNull,
   GraphQLString
-} from 'graphql';
-import { makeExecutableSchema } from 'apollo-server-express';
+} from 'graphql'
+import { makeExecutableSchema } from 'apollo-server-express'
 
-const BASE_URL = 'https://api.spacexdata.com/v3';
+const BASE_URL = 'https://api.spacexdata.com/v3'
+
+/**
+ * Main Schema
+ */
+const typeDefs = gql`
+  type Rockets
+  {
+    id: ID
+    name: String
+    active: Boolean
+  }
+  type Query
+  {
+    getRocket: Rocket
+    getRockets(people: Int): [getRocket]
+  }
+`
 
 function fetchResponseByURL(relativeURL)
 {
-  return fetch(`${BASE_URL}${relativeURL}`).then(res => res.json());
+  return fetch(`${BASE_URL}${relativeURL}`).then(res => res.json())
 }
 
 function fetchCapsules()
 {
-  return fetchResponseByURL('/capsules').then(json => json.capsules);
+  return fetchResponseByURL('/capsules').then(json => json.capsules)
 }
 
 function fetchCapsulesByURL(relativeURL)
 {
-  return fetchResponseByURL(relativeURL).then(json => json.capsules);
+  return fetchResponseByURL(relativeURL).then(json => json.capsules)
 }
 
 const CapsuleType = new GraphQLObjectType(
@@ -37,7 +54,7 @@ const CapsuleType = new GraphQLObjectType(
       resolve: capsule => capsule.map(fetchCapsulesByURL),
     },
   }),
-});
+})
 
 const QueryCapsule = new GraphQLObjectType(
 {
@@ -54,12 +71,12 @@ const QueryCapsule = new GraphQLObjectType(
       resolve: (root, args) => fetchPersonByURL(`/capsules/${args.id}/`),
     },
   }),
-});
+})
 
 const gqlSchema = new GraphQLSchema(
 {
   query: QueryCapsule,
-});
+})
 
 const Resolvers = () =>
 {
@@ -69,4 +86,4 @@ const Resolvers = () =>
 export default makeExecutableSchema({
 	typeDefs: [gqlSchema],
 	resolvers: Resolvers
-});
+})

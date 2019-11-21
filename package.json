@@ -5,6 +5,7 @@
     "app:start": "cd app && yarn start",
     "app:log": "cd app && yarn log",
     "app:shake": "cd app && yarn shake",
-    "gql:start": "cd graphql && yarn start"
+    "gql:start": "cd graphql && yarn start",
+    "preinstall": "cd app && yarn && cd ../graphql && yarn"
   }
 }
