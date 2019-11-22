@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'SpaceX' do
-  # Pods for SpaceX
+target 'ReactX' do
+  # Pods for ReactX
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -29,7 +29,7 @@ target 'SpaceX' do
 
   pod 'RNGLModelView', :path => '../node_modules/react-native-gl-model-view'
 
-  target 'SpaceXTests' do
+  target 'ReactXTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -37,10 +37,10 @@ target 'SpaceX' do
   use_native_modules!
 end
 
-target 'SpaceX-tvOS' do
-  # Pods for SpaceX-tvOS
+target 'ReactX-tvOS' do
+  # Pods for ReactX-tvOS
 
-  target 'SpaceX-tvOSTests' do
+  target 'ReactX-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

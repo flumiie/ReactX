@@ -5,10 +5,8 @@
     "app:log": "cd app && yarn log",
     "app:shake": "cd app && yarn shake",
     "gql:start": "cd graphql && yarn start",
-    "preinstall": "cd app && yarn && cd ../graphql && yarn"
-  },
-  "dependencies": {
-    "apollo-server": "^2.9.12",
-    "node-fetch": "^2.6.0"
+    "wm:del": "watchman watch-del-all",
+    "npm:preinstall": "cd app && npm i && cd ../graphql && npm i",
+    "yarn:preinstall": "cd app && yarn && cd ../graphql && yarn"
   }
 }

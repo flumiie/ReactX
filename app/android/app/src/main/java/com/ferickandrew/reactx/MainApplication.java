@@ -1,4 +1,4 @@
-package com.spacex;
+package com.ferickandrew.reactx;
 
 import android.app.Application;
 import android.util.Log;
