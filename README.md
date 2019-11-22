@@ -25,6 +25,11 @@ To start GraphQL server:<br/>
 With NPM: ```npm run gql:start```<br/>
 With Yarn: ```yarn gql:start```
 
+## Sidenote
+
+This project is using ```yarn``` node package manager.
+Using ```npm``` is not prohibited, but it is recommended to not mixmatch it.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.<br/>
 Please make sure to update tests as appropriate.
