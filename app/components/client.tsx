@@ -2,12 +2,13 @@ import
 {
   HttpLink
 } from 'apollo-client-preset'
-import {
+import
+{
   ApolloLink,
   InMemoryCache
 } from 'apollo-boost'
 import { ApolloClient } from 'apollo-client'
-import { onError } from "apollo-link-error";
+import { onError } from 'apollo-link-error'
 
 const link = onError(({ graphQLErrors, networkError }) =>
 {
@@ -22,12 +23,14 @@ const link = onError(({ graphQLErrors, networkError }) =>
 
 const cache = new InMemoryCache();
 
-const restLink = new HttpLink({
+const restLink = new HttpLink(
+{
   uri: 'https://api.spacex.land/graphql/'
 })
 
 // const setup = async onComplete => {
-  const client = new ApolloClient({
+  const client = new ApolloClient(
+  {
     link: ApolloLink.from([restLink]),
     cache,
     // resolvers,

@@ -1,10 +1,14 @@
 import { ApolloServer } from 'apollo-server'
+import { SpaceXAPI } from './data/source'
 import
 {
-  fetchRockets,
   typeDefs,
   resolvers
-} from './data/spacex'
+} from './data/schema'
+import
+{
+  fetchRockets
+} from './data/queries'
 
 const server = new ApolloServer(
 {
@@ -12,7 +16,7 @@ const server = new ApolloServer(
   resolvers,
   dataSources: () =>
   ({
-    spacexAPI: fetchRockets('/rockets')
+    api: new SpaceXAPI()
   }),
   // subscriptions: { path: "/websocket" }
 })
