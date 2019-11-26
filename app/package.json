@@ -1,5 +1,5 @@
 {
-  "name": "ReactX",
+  "name": "reactx",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "graphql": "^14.5.8",
     "graphql-anywhere": "^4.2.4",
     "graphql-tag": "^2.10.1",
+    "metro-react-native-babel-preset": "^0.57.0",
     "native-base": "^2.13.8",
     "qs": "^6.9.1",
     "react": "16.8.6",
@@ -45,7 +46,6 @@
     "@react-native-community/eslint-config": "^0.0.3",
     "@types/react": "^16.9.2",
     "@types/react-native": "^0.60.14",
-    "metro-react-native-babel-preset": "0.54.1",
     "typescript": "^3.6.3"
   }
 }

@@ -1,6 +1,16 @@
 {
   "presets": [
-    "es2015",
+    /**
+     * TODO: needs a change to support RESTDataSource
+     * "es2015" -> (NW)
+     * "@babel/preset-react"
+     */
+    "@babel/preset-react",
+    "@babel/preset-env", {
+      "targets": {
+        "node": "current"
+      }
+    },
     "stage-0",
     "react"
   ],

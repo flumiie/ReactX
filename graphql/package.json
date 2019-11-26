@@ -1,15 +1,11 @@
 {
-  "name": "starwars-server",
+  "name": "spacex-gql-server",
   "version": "0.1.2",
-  "description": "GraphQL Server setup with an example Star Wars schema",
+  "description": "An open source React Native app for SpaceX observations of rocket, core, capsule, pad, and launch data",
   "scripts": {
     "generate": "graphql-codegen",
-    "start": "nodemon ./server.js --exec babel-node",
+    "start": "nodemon --exec babel-node -- ./server.js",
     "lint": "eslint ."
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/apollographql/starwars-server.git"
   },
   "keywords": [
     "Node.js",
@@ -19,12 +15,12 @@
     "Apollo",
     "Meteor"
   ],
-  "author": "Jonas Helfer <jonas@helfer.email>",
+  "author": "Ferick Andrew <ferickwar@gmaill.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/apollographql/starwars-server/issues"
+    "url": "https://github.com/fralyx/ReactX/issues"
   },
-  "homepage": "https://github.com/apollographql/starwars-server#readme",
+  "homepage": "https://github.com/fralyx/ReactX#readme",
   "dependencies": {
     "apollo-datasource-rest": "^0.6.9",
     "apollo-server": "^2.9.12",
@@ -39,9 +35,14 @@
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/node": "^7.7.4",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
     "@graphql-codegen/cli": "^1.8.3",
-    "babel-cli": "6.26.0",
-    "babel-core": "^6.26.3",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-inline-import": "^3.0.0",
     "babel-polyfill": "6.26.0",
