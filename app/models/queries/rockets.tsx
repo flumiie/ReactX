@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const GET_ROCKETS = gql`
-  query Rockets
+  query Rockets($limit: Int)
   {
     rockets(limit: 10)
     {

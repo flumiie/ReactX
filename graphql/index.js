@@ -41,7 +41,8 @@ const server = new GraphQLServer(
   resolvers
 });
 
-server.start().then(({ url }) =>
+server.start().then(( url ) =>
 {
-  console.log(`🚀 Server ready at ${url}`)
+  const PORT = url._connectionKey.split('::::')[1]
+  console.log(`🚀 Server is running at http://localhost:${PORT}`)
 })

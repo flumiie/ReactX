@@ -1,12 +1,12 @@
 import React from 'react'
 
 import { ApolloProvider } from 'react-apollo'
-import setup from './client'
+import client from './client'
 import AppContents from './AppContents'
 
 type Props = {}
 const App = (): React.ReactFragment => (
-  <ApolloProvider client={setup}>
+  <ApolloProvider client={client}>
     <React.Fragment>
       <AppContents/>
     </React.Fragment>
