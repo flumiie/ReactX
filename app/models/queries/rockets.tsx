@@ -1,13 +1,15 @@
 import gql from "graphql-tag";
 
 export const GET_ROCKETS = gql`
-  query Rocket
+  query Rockets
   {
     rockets(limit: 10)
     {
       id
-      name
+      rocket_name
       active
+      stages
+      description
     }
   }
 `

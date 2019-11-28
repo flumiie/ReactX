@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "start:ios": "react-native run-ios && react-native start",
+    "start:ios": "react-native run-ios --simulator='iPhone 11' && react-native start",
     "start:android": "react-native run-android && react-native start",
     "log": "react-native log-android",
     "shake": "adb shell input keyevent 82",

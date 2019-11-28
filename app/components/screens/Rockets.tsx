@@ -133,54 +133,57 @@ const Rockets = (props: any) =>
           //   return (
           //     <Text style={styles.errorText}>{err}</Text>
           //   )
+
+          console.log(res)
           
-          if(res.loading && !res.data)
-            return (
-              <View style={styles.loadingContainer}>
-                <View style={styles.spinner}>
-                  <Spinner color='blue'/>
-                </View>
-              </View>
-            )
+          return null;
+          // if(res.loading && !res.data)
+          //   return (
+          //     <View style={styles.loadingContainer}>
+          //       <View style={styles.spinner}>
+          //         <Spinner color='blue'/>
+          //       </View>
+          //     </View>
+          //   )
           
-          return (
-            <View>
-              <ScrollView style={styles.scrollViewContainer}>
-                {
-                  animatedCards
-                  ?  <Carousel
-                        // ref={(c) => { this._carousel = c; }}
-                        data={res.data.rockets}
-                        renderItem={_renderCarousel}
-                        sliderWidth={D_WIDTH}
-                        itemWidth={D_WIDTH/1.2}
-                        hasParallaxImages={true}
-                      />
-                  : <FlatList
-                      data={res.data.rockets}
-                      renderItem={(item) => _renderFlatList(item)}
-                    />
-                } 
-              </ScrollView>
-              <View style={styles.buttonContainer}>
-                <AwesomeButton
-                  height={35}
-                  onPress={() =>
-                    {
-                      if(animatedCards) setAnimatedCards(false)
-                      else setAnimatedCards(true)
-                    }
-                  }
-                >
-                  {
-                    animatedCards
-                    ? 'Animated'
-                    : 'Flat'
-                  }
-                </AwesomeButton>
-              </View>
-            </View>
-          )
+          // return (
+          //   <View>
+          //     <ScrollView style={styles.scrollViewContainer}>
+          //       {
+          //         animatedCards
+          //         ?  <Carousel
+          //               // ref={(c) => { this._carousel = c; }}
+          //               data={res.data.rockets}
+          //               renderItem={_renderCarousel}
+          //               sliderWidth={D_WIDTH}
+          //               itemWidth={D_WIDTH/1.2}
+          //               hasParallaxImages={true}
+          //             />
+          //         : <FlatList
+          //             data={res.data.rockets}
+          //             renderItem={(item) => _renderFlatList(item)}
+          //           />
+          //       } 
+          //     </ScrollView>
+          //     <View style={styles.buttonContainer}>
+          //       <AwesomeButton
+          //         height={35}
+          //         onPress={() =>
+          //           {
+          //             if(animatedCards) setAnimatedCards(false)
+          //             else setAnimatedCards(true)
+          //           }
+          //         }
+          //       >
+          //         {
+          //           animatedCards
+          //           ? 'Animated'
+          //           : 'Flat'
+          //         }
+          //       </AwesomeButton>
+          //     </View>
+          //   </View>
+          // )
         }
       }
     </Query>

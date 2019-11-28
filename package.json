@@ -1,7 +1,8 @@
 {
   "scripts": {
-    "app:build": "cd app && yarn start:android",
-    "app:start": "cd app && yarn start",
+    "app:start": "cd app && yarn start:android",
+    "app:startios": "cd app && yarn start:ios",
+    "metro:start": "cd app && yarn start",
     "app:log": "cd app && yarn log",
     "app:shake": "cd app && yarn shake",
     "gql:start": "cd graphql && yarn start",

@@ -25,7 +25,8 @@ const cache = new InMemoryCache();
 
 const restLink = new HttpLink(
 {
-  uri: 'https://api.spacex.land/graphql/'
+  // uri: 'https://api.spacex.land/graphql/'
+  uri: 'http://localhost:4000/'
 })
 
 // const setup = async onComplete => {
@@ -33,8 +34,6 @@ const restLink = new HttpLink(
   {
     link: ApolloLink.from([restLink]),
     cache,
-    // resolvers,
-    // typeDefs
   })
 
 //   return onComplete(client)
