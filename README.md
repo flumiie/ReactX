@@ -18,8 +18,8 @@ With NPM: ```npm run app:build```<br/>
 With Yarn: ```yarn app:build```
 
 To start the Metro Bundler:<br/>
-With NPM: ```npm run app:start```<br/>
-With Yarn: ```yarn app:start```
+With NPM: ```npm run metro:start```<br/>
+With Yarn: ```yarn metro:start```
 
 To start GraphQL server:<br/>
 With NPM: ```npm run gql:start```<br/>
