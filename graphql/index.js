@@ -12,13 +12,115 @@ const typeDefs = `
 
   type Rocket
   {
-    id: String
+    rocket_id: String
     rocket_name: String
     active: String
     stages: String
     description: String
+    wikipedia: String
+    type: String
+    success_rate_pct: String
+    boosters: String
+    company: String
+    country: String
+    cost_per_launch: String
+    first_flight: String
   }
 `
+  //   landing_legs
+  //   {
+  //     number
+  //     material
+  //   }
+  //   diameter
+  //   {
+  //     feet
+  //     meters
+  //   }
+  //   engines
+  //   {
+  //     engine_loss_max
+  //     layout
+  //     number
+  //     propellant_1
+  //     propellant_2
+  //     thrust_sea_level
+  //     {
+  //       kN
+  //       lbf
+  //     }
+  //     thrust_to_weight
+  //     thrust_vacuum
+  //     {
+  //       kN
+  //     }
+  //     type
+  //     version
+  //   }
+  //   first_stage
+  //   {
+  //     burn_time_sec
+  //     engines
+  //     fuel_amount_tons
+  //     reusable
+  //     thrust_sea_level
+  //     {
+  //       kN
+  //       lbf
+  //     }
+  //     thrust_vacuum
+  //     {
+  //       kN
+  //       lbf
+  //     }
+  //   }
+  //   height
+  //   {
+  //     meters
+  //     feet
+  //   }
+  //   mass
+  //   {
+  //     kg
+  //     lb
+  //   }
+  //   payload_weights
+  //   {
+  //     id
+  //     kg
+  //     lb
+  //     name
+  //   }
+  //   second_stage
+  //   {
+  //     burn_time_sec
+  //     engines
+  //     fuel_amount_tons
+  //     payloads
+  //     {
+  //       composite_fairing
+  //       {
+  //         diameter
+  //         {
+  //           feet
+  //           meters
+  //         }
+  //         height
+  //         {
+  //           feet
+  //           meters
+  //         }
+  //       }
+  //       option_1
+  //     }
+  //     thrust
+  //     {
+  //       kN
+  //       lbf
+  //     }
+  //   }
+  // }
+
 
 const resolvers =
 {

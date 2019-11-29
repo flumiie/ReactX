@@ -67,16 +67,16 @@ const Rockets = (props: any) =>
   
   const _renderFlatList = ({ item }) =>
   {
-    const isActive = item.active ? 'Yes': 'No'
+    const isActive = item.active === 'true' ? 'Yes': 'No'
 
     return (
       <Content padder>
         <Card
-          onPress={() => openRocketDetails(item.id, props.navigation)}
+          onPress={() => openRocketDetails(item.rocket_id, props.navigation)}
         >
           <CardItem style={styles.cardItem}>
             <ImageBackground
-                source={rocketImages(item.id)}
+                source={rocketImages(item.rocket_id)}
                 style={styles.cardImage}
                 resizeMode='cover'
                 borderRadius={5}
@@ -87,7 +87,7 @@ const Rockets = (props: any) =>
                 end={{ x: 0, y: 0 }}
                 style={styles.textContainer}
               >
-                <Text style={styles.itemTitle}>{item.name}</Text>
+                <Text style={styles.itemTitle}>{item.rocket_name}</Text>
                 <Text style={styles.itemText}>Is Active: {isActive}</Text>
               </LinearGradient>
             </ImageBackground>
@@ -99,13 +99,15 @@ const Rockets = (props: any) =>
 
   const _renderCarousel = ({ item, index }, parallaxProps: any) =>
   {
+    const isActive = item.active === 'true' ? 'Yes': 'No'
+
     return (
       <Content
-        onTouchEnd={() => openRocketDetails(item.id, props.navigation)}
+        onTouchEnd={() => openRocketDetails(item.rocket_id, props.navigation)}
       >
         <View style={styles.carouselItem}>
           <ParallaxImage
-            source={rocketImages(item.id)}
+            source={rocketImages(item.rocket_id)}
             containerStyle={styles.carouselImageContainer}
             style={styles.parallaxImage}
             parallaxFactor={0.4}
@@ -117,8 +119,8 @@ const Rockets = (props: any) =>
             end={{ x: 0, y: 0 }}
             style={styles.textContainer}
           >
-            <Text style={styles.itemTitle}>{item.name}</Text>
-            <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
+            <Text style={styles.itemTitle}>{item.rocket_name}</Text>
+            <Text style={styles.itemText}>Is Active: {isActive}</Text>
           </LinearGradient>
           
         </View>
@@ -135,8 +137,6 @@ const Rockets = (props: any) =>
           //   return (
           //     <Text style={styles.errorText}>{err}</Text>
           //   )
-          
-          console.log(res)
           
           if(res.loading && !res.data)
             return (
@@ -157,11 +157,11 @@ const Rockets = (props: any) =>
                         <Text style={{
                           textTransform:'uppercase',
                           fontWeight:'bold',
-                          fontSize: 20,
+                          fontSize: 30,
                           marginBottom: 10
-                        }}>{err.toString()}</Text>
+                        }} key={i}>{err.toString()}</Text>
                       :
-                        <Text>{err.toString()}</Text>
+                        <Text key={i}>{err.toString()}</Text>
                     )
                   }
                 </View>

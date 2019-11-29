@@ -29,7 +29,7 @@ const RocketDetails = (props: any) =>
   return (
     <Query
       query={GET_ROCKET_DETAILS}
-      variables={{ id: rocketID }}
+      variables={{ rocket_id: rocketID }}
     >
       {
         (res: any) =>
@@ -38,48 +38,51 @@ const RocketDetails = (props: any) =>
           //   return (
           //     <Text style={styles.errorText}>{err}</Text>
           //   )
-          
-          if(res.loading && !res.data)
-            return (
-              <View style={styles.loadingContainer}>
-                <View style={styles.spinner}>
-                  <Spinner color='blue'/>
-                </View>
-              </View>
-            )
 
-          const item = res.data.rocket
-          return (
-            <ScrollView>
-              <Container style={styles.container}>
-                <Text style={styles.itemText}>{item.name}</Text>
-                <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
-                <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
-                <Text style={styles.itemText}>Company: {item.company}</Text>
-                <Text style={styles.itemText}>Country: {item.country}</Text>
-                {/* <Text style={styles.itemText}>Diameter: {item.diameter}</Text> */}
-                {/* <Text style={styles.itemText}>Engines: {item.engines}</Text> */}
-                <Text style={styles.itemText}>Cost per Launch: {item.cost_per_launch}</Text>
-                <Text style={styles.itemText}>Boosters: {item.boosters}</Text>
-                <Text style={[styles.itemText, item.description ? styles.descriptionText : styles.errorText]}>
-                  Description: {item.description}
-                </Text>
+          console.log(res)
+          return null
 
-                {/* <ModelView
-                  model={{
-                    uri: '../../models/3d/falcon9.obj',
-                  }}
-                  // texture={{
-                  //   uri: 'texture.png',
-                  // }}
-                  scale={0.01}
-                  translateZ={-2}
-                  rotateZ={270}
-                  style={{ flex: 1 }}
-                /> */}
-              </Container>
-            </ScrollView>
-          )
+          // if(res.loading && !res.data)
+          //   return (
+          //     <View style={styles.loadingContainer}>
+          //       <View style={styles.spinner}>
+          //         <Spinner color='blue'/>
+          //       </View>
+          //     </View>
+          //   )
+
+          // const item = res.data.rocket
+          // return (
+          //   <ScrollView>
+          //     <Container style={styles.container}>
+          //       <Text style={styles.itemText}>{item.name}</Text>
+          //       <Text style={styles.itemText}>Is Active: {item.active == true ? 'Yes' : 'No'}</Text>
+          //       <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
+          //       <Text style={styles.itemText}>Company: {item.company}</Text>
+          //       <Text style={styles.itemText}>Country: {item.country}</Text>
+          //       {/* <Text style={styles.itemText}>Diameter: {item.diameter}</Text> */}
+          //       {/* <Text style={styles.itemText}>Engines: {item.engines}</Text> */}
+          //       <Text style={styles.itemText}>Cost per Launch: {item.cost_per_launch}</Text>
+          //       <Text style={styles.itemText}>Boosters: {item.boosters}</Text>
+          //       <Text style={[styles.itemText, item.description ? styles.descriptionText : styles.errorText]}>
+          //         Description: {item.description}
+          //       </Text>
+
+          //       {/* <ModelView
+          //         model={{
+          //           uri: '../../models/3d/falcon9.obj',
+          //         }}
+          //         // texture={{
+          //         //   uri: 'texture.png',
+          //         // }}
+          //         scale={0.01}
+          //         translateZ={-2}
+          //         rotateZ={270}
+          //         style={{ flex: 1 }}
+          //       /> */}
+          //     </Container>
+          //   </ScrollView>
+          // )
         }
       }
     </Query>
