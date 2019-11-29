@@ -19,7 +19,7 @@ import
   Body,
   Content
 } from 'native-base'
-import { Query, useQuery } from 'react-apollo'
+import { Query } from 'react-apollo'
 import
 {
   D_HEIGHT,
@@ -47,16 +47,7 @@ const openRocketDetails = (itemID: any, navigation: any) =>
 
 const Rockets = (props: any) =>
 {
-  const { data } = useQuery(GET_ROCKETS,
-  {
-    variables:
-    {
-      limit: 10
-    }
-  })
   const [animatedCards, setAnimatedCards] = useState(true)
-
-  console.log(data)
 
   const rocketImages = (id: any) =>
   {
@@ -144,57 +135,77 @@ const Rockets = (props: any) =>
           //   return (
           //     <Text style={styles.errorText}>{err}</Text>
           //   )
-
+          
           console.log(res)
           
-          return null
-          // if(res.loading && !res.data)
-          //   return (
-          //     <View style={styles.loadingContainer}>
-          //       <View style={styles.spinner}>
-          //         <Spinner color='blue'/>
-          //       </View>
-          //     </View>
-          //   )
+          if(res.loading && !res.data)
+            return (
+              <View style={styles.loadingContainer}>
+                <View style={styles.loadStatus}>
+                  <Spinner color='blue'/>
+                </View>
+              </View>
+            )
+
+          if(res.error)
+            return (
+              <View style={styles.loadingContainer}>
+                <View style={styles.loadStatus}>
+                  {
+                    res.error.message.split(': ').map((err: any, i: any) =>
+                      i == 0 ?
+                        <Text style={{
+                          textTransform:'uppercase',
+                          fontWeight:'bold',
+                          fontSize: 20,
+                          marginBottom: 10
+                        }}>{err.toString()}</Text>
+                      :
+                        <Text>{err.toString()}</Text>
+                    )
+                  }
+                </View>
+              </View>
+            )
           
-          // return (
-          //   <View>
-          //     <ScrollView style={styles.scrollViewContainer}>
-          //       {
-          //         animatedCards
-          //         ?  <Carousel
-          //               // ref={(c) => { this._carousel = c }}
-          //               data={res.data.rockets}
-          //               renderItem={_renderCarousel}
-          //               sliderWidth={D_WIDTH}
-          //               itemWidth={D_WIDTH/1.2}
-          //               hasParallaxImages={true}
-          //             />
-          //         : <FlatList
-          //             data={res.data.rockets}
-          //             renderItem={(item) => _renderFlatList(item)}
-          //           />
-          //       } 
-          //     </ScrollView>
-          //     <View style={styles.buttonContainer}>
-          //       <AwesomeButton
-          //         height={35}
-          //         onPress={() =>
-          //           {
-          //             if(animatedCards) setAnimatedCards(false)
-          //             else setAnimatedCards(true)
-          //           }
-          //         }
-          //       >
-          //         {
-          //           animatedCards
-          //           ? 'Animated'
-          //           : 'Flat'
-          //         }
-          //       </AwesomeButton>
-          //     </View>
-          //   </View>
-          // )
+          return (
+            <View>
+              <ScrollView style={styles.scrollViewContainer}>
+                {
+                  animatedCards
+                  ?  <Carousel
+                        // ref={(c) => { this._carousel = c }}
+                        data={res.data.rockets}
+                        renderItem={_renderCarousel}
+                        sliderWidth={D_WIDTH}
+                        itemWidth={D_WIDTH/1.2}
+                        hasParallaxImages={true}
+                      />
+                  : <FlatList
+                      data={res.data.rockets}
+                      renderItem={(item) => _renderFlatList(item)}
+                    />
+                } 
+              </ScrollView>
+              <View style={styles.buttonContainer}>
+                <AwesomeButton
+                  height={35}
+                  onPress={() =>
+                    {
+                      if(animatedCards) setAnimatedCards(false)
+                      else setAnimatedCards(true)
+                    }
+                  }
+                >
+                  {
+                    animatedCards
+                    ? 'Animated'
+                    : 'Flat'
+                  }
+                </AwesomeButton>
+              </View>
+            </View>
+          )
         }
       }
     </Query>
@@ -203,7 +214,7 @@ const Rockets = (props: any) =>
 
 const styles = StyleSheet.create(
 {
-  spinner:
+  loadStatus:
   {
     display: 'flex',
     alignItems: 'center',
