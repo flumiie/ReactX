@@ -112,7 +112,7 @@ const Rockets = (props: any) =>
             containerStyle={styles.carouselImageContainer}
             style={styles.parallaxImage}
             parallaxFactor={0.4}
-            // {...parallaxProps}
+            {...parallaxProps}
           />
           <LinearGradient
             colors={['black', '#ffffff00']}
