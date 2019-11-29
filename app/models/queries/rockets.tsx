@@ -8,16 +8,14 @@ export const GET_ROCKETS = gql`
       rocket_id
       rocket_name
       active
-      stages
-      description
     }
   }
 `
 
 export const GET_ROCKET_DETAILS = gql`
-  query Rocket($rocket_id: ID!)
+  query Rocket($rocket_id: String!)
   {
-    rocket(rocket_id: $rocket_id)
+    rocket(id: $rocket_id)
     {
       rocket_id
       rocket_name
