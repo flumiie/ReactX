@@ -45,25 +45,25 @@ const openRocketDetails = (itemID: any, navigation: any) =>
   )
 }
 
+export const rocketImage = (id: any) =>
+{
+  /**
+   * Dynamic names for require()
+   * in React Native is not yet supported
+   */
+  if(id == 'falcon1')
+    return require('../../assets/images/falcon1.jpg')
+  if(id == 'falcon9')
+    return require('../../assets/images/falcon9.jpg')
+  if(id == 'falconheavy')
+    return require('../../assets/images/falconheavy.jpg')
+  if(id == 'starship')
+    return require('../../assets/images/starship.jpg')
+}
+
 const Rockets = (props: any) =>
 {
   const [animatedCards, setAnimatedCards] = useState(true)
-
-  const rocketImages = (id: any) =>
-  {
-    /**
-     * Dynamic names for require()
-     * in React Native is not yet supported
-     */
-    if(id == 'falcon1')
-      return require('../../assets/images/falcon1.jpg')
-    if(id == 'falcon9')
-      return require('../../assets/images/falcon9.jpg')
-    if(id == 'falconheavy')
-      return require('../../assets/images/falconheavy.jpg')
-    if(id == 'starship')
-      return require('../../assets/images/starship.jpg')
-  }
   
   const _renderFlatList = ({ item }) =>
   {
@@ -76,7 +76,7 @@ const Rockets = (props: any) =>
         >
           <CardItem style={styles.cardItem}>
             <ImageBackground
-                source={rocketImages(item.rocket_id)}
+                source={rocketImage(item.rocket_id)}
                 style={styles.cardImage}
                 resizeMode='cover'
                 borderRadius={5}
@@ -107,7 +107,7 @@ const Rockets = (props: any) =>
       >
         <View style={styles.carouselItem}>
           <ParallaxImage
-            source={rocketImages(item.rocket_id)}
+            source={rocketImage(item.rocket_id)}
             containerStyle={styles.carouselImageContainer}
             style={styles.parallaxImage}
             parallaxFactor={0.4}

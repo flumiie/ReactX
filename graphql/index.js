@@ -1,6 +1,13 @@
 const { GraphQLServer } = require('graphql-yoga')
 const fetch = require('node-fetch')
 
+const options = {
+  port: 4000,
+  endpoint: '/graphql',
+  subscriptions: '/subscriptions',
+  playground: '/playground',
+}
+
 const API_URL = 'https://api.spacexdata.com/v3/'
 
 const typeDefs = `
@@ -145,8 +152,7 @@ const server = new GraphQLServer(
   resolvers
 })
 
-server.start().then(( url ) =>
+server.start(options, ({ port }) =>
 {
-  const PORT = url._connectionKey.split('::::')[1]
-  console.log(`🚀 Server is running on http://localhost:${PORT}`)
+  console.log(`🚀 Server is listening on port ${port}`)
 })

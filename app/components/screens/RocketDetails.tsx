@@ -8,7 +8,8 @@ import
   View,
   Text,
   Animated,
-  Easing
+  Easing,
+  Image
 } from 'react-native'
 import { Spinner, Container } from 'native-base'
 import { Query } from 'react-apollo'
@@ -20,6 +21,7 @@ import
 import { GET_ROCKET_DETAILS } from '../../models/queries/rockets'
 
 import ModelView from 'react-native-gl-model-view'
+import { rocketImage } from './Rockets'
 
 const RocketDetails = (props: any) =>
 {
@@ -53,6 +55,7 @@ const RocketDetails = (props: any) =>
           return (
             <ScrollView>
               <Container style={styles.container}>
+                <Image source={rocketImage(item.rocket_id)} resizeMode='cover' width={D_WIDTH} height={D_WIDTH}/>
                 <Text style={styles.itemText}>{item.rocket_name}</Text>
                 <Text style={styles.itemText}>Is Active: {isActive}</Text>
                 <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
