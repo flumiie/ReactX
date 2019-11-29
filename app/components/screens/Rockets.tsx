@@ -35,13 +35,13 @@ const openRocketDetails = (itemID: any, navigation: any) =>
 {
   navigation.dispatch(
     NavigationActions.navigate(
-    {
-      routeName: 'RocketDetails',
-      params:
       {
-        rocketID: itemID
-      }
-    })
+        routeName: 'RocketDetails',
+        params:
+        {
+          rocketID: itemID
+        }
+      })
   )
 }
 
@@ -64,10 +64,10 @@ export const rocketImage = (id: any) =>
 const Rockets = (props: any) =>
 {
   const [animatedCards, setAnimatedCards] = useState(true)
-  
+
   const _renderFlatList = ({ item }) =>
   {
-    const isActive = item.active === 'true' ? 'Yes': 'No'
+    const isActive = item.active === 'true' ? 'Yes' : 'No'
 
     return (
       <Content padder>
@@ -76,10 +76,10 @@ const Rockets = (props: any) =>
         >
           <CardItem style={styles.cardItem}>
             <ImageBackground
-                source={rocketImage(item.rocket_id)}
-                style={styles.cardImage}
-                resizeMode='cover'
-                borderRadius={5}
+              source={rocketImage(item.rocket_id)}
+              style={styles.cardImage}
+              resizeMode='cover'
+              borderRadius={5}
             >
               <LinearGradient
                 colors={['black', '#ffffff00']}
@@ -99,7 +99,7 @@ const Rockets = (props: any) =>
 
   const _renderCarousel = ({ item, index }, parallaxProps: any) =>
   {
-    const isActive = item.active === 'true' ? 'Yes': 'No'
+    const isActive = item.active === 'true' ? 'Yes' : 'No'
 
     return (
       <Content
@@ -122,12 +122,12 @@ const Rockets = (props: any) =>
             <Text style={styles.itemTitle}>{item.rocket_name}</Text>
             <Text style={styles.itemText}>Is Active: {isActive}</Text>
           </LinearGradient>
-          
+
         </View>
       </Content>
     )
   }
-  
+
   return (
     <Query query={GET_ROCKETS}>
       {
@@ -150,52 +150,51 @@ const Rockets = (props: any) =>
                     res.error.message.split(': ').map((err: any, i: any) =>
                       i == 0 ?
                         <Text style={{
-                          textTransform:'uppercase',
-                          fontWeight:'bold',
+                          textTransform: 'uppercase',
+                          fontWeight: 'bold',
                           fontSize: 30,
                           marginBottom: 10
                         }} key={i}>{err.toString()}</Text>
-                      :
+                        :
                         <Text key={i}>{err.toString()}</Text>
                     )
                   }
                 </View>
               </View>
             )
-          
+
           return (
             <View>
               <ScrollView style={styles.scrollViewContainer}>
                 {
                   animatedCards
-                  ?  <Carousel
-                        // ref={(c) => { this._carousel = c }}
-                        data={res.data.rockets}
-                        renderItem={_renderCarousel}
-                        sliderWidth={D_WIDTH}
-                        itemWidth={D_WIDTH/1.2}
-                        hasParallaxImages={true}
-                      />
-                  : <FlatList
+                    ? <Carousel
+                      // ref={(c) => { this._carousel = c }}
+                      data={res.data.rockets}
+                      renderItem={_renderCarousel}
+                      sliderWidth={D_WIDTH}
+                      itemWidth={D_WIDTH / 1.2}
+                      hasParallaxImages={true}
+                    />
+                    : <FlatList
                       data={res.data.rockets}
                       renderItem={(item) => _renderFlatList(item)}
                     />
-                } 
+                }
               </ScrollView>
               <View style={styles.buttonContainer}>
                 <AwesomeButton
                   height={35}
                   onPress={() =>
-                    {
-                      if(animatedCards) setAnimatedCards(false)
-                      else setAnimatedCards(true)
-                    }
-                  }
+                  {
+                    if(animatedCards) setAnimatedCards(false)
+                    else setAnimatedCards(true)
+                  }}
                 >
                   {
                     animatedCards
-                    ? 'Animated'
-                    : 'Flat'
+                      ? 'Animated'
+                      : 'Flat'
                   }
                 </AwesomeButton>
               </View>
@@ -215,11 +214,11 @@ const styles = StyleSheet.create(
     alignItems: 'center',
     marginTop: D_HEIGHT / 2,
     transform:
-    [
-      { translateY: -D_HEIGHT / 12.5 }
-    ]
+      [
+        { translateY: -D_HEIGHT / 12.5 }
+      ]
   },
-  
+
   loadingContainer:
   {
     flex: 1,
@@ -303,10 +302,10 @@ const styles = StyleSheet.create(
     fontSize: 17,
     fontWeight: '500',
     fontFamily: Platform.select(
-    {
-      ios: 'Chalkboard SE',
-      android: 'sans-serif-condensed'
-    })
+      {
+        ios: 'Chalkboard SE',
+        android: 'sans-serif-condensed'
+      })
   },
 
   errorText:
@@ -314,10 +313,10 @@ const styles = StyleSheet.create(
     fontSize: 20,
     fontWeight: '500',
     fontFamily: Platform.select(
-    {
-      ios: 'Chalkboard SE',
-      android: 'sans-serif-condensed'
-    }),
+      {
+        ios: 'Chalkboard SE',
+        android: 'sans-serif-condensed'
+      }),
     color: 'red'
   },
   descriptionText:

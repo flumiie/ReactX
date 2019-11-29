@@ -14,6 +14,17 @@ const resolvers =
     {
       const response = await fetch(`${API_URL}rockets`)
       return response.json()
+    },
+
+    mission: async (_, {id}) =>
+    {
+      const response = await fetch(`${API_URL}missions/${id}/`)
+      return response.json()
+    },
+    missions: async (_) =>
+    {
+      const response = await fetch(`${API_URL}missions`)
+      return response.json()
     }
   }
 }

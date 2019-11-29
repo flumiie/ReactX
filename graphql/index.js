@@ -1,6 +1,8 @@
 const { GraphQLServer } = require('graphql-yoga')
-const typeDefs = require('./schema')
 const resolvers = require('./resolvers')
+const queries = require('./schemas/queries')
+const schemaRockets = require('./schemas/rockets')
+const schemaMissions = require('./schemas/missions')
 
 const options = {
   port: 4000,
@@ -8,6 +10,11 @@ const options = {
   subscriptions: '/subscriptions',
   playground: '/playground',
 }
+
+const typeDefs = queries.concat(
+  schemaRockets,
+  schemaMissions
+)
 
 const server = new GraphQLServer(
 {
