@@ -30,6 +30,7 @@ import { GET_ROCKETS } from '../../models/queries/rockets'
 import AwesomeButton from 'react-native-really-awesome-button/src/themes/bruce'
 import Carousel, { ParallaxImage } from 'react-native-snap-carousel'
 import { Card } from 'react-native-paper'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const openRocketDetails = (itemID: any, navigation: any) =>
 {
@@ -102,8 +103,8 @@ const Rockets = (props: any) =>
     const isActive = item.active === 'true' ? 'Yes' : 'No'
 
     return (
-      <Content
-        onTouchEnd={() => openRocketDetails(item.rocket_id, props.navigation)}
+      <TouchableOpacity
+        onPress={() => openRocketDetails(item.rocket_id, props.navigation)}
       >
         <View style={styles.carouselItem}>
           <ParallaxImage
@@ -111,7 +112,7 @@ const Rockets = (props: any) =>
             containerStyle={styles.carouselImageContainer}
             style={styles.parallaxImage}
             parallaxFactor={0.4}
-            {...parallaxProps}
+            // {...parallaxProps}
           />
           <LinearGradient
             colors={['black', '#ffffff00']}
@@ -122,9 +123,8 @@ const Rockets = (props: any) =>
             <Text style={styles.itemTitle}>{item.rocket_name}</Text>
             <Text style={styles.itemText}>Is Active: {isActive}</Text>
           </LinearGradient>
-
         </View>
-      </Content>
+      </TouchableOpacity>
     )
   }
 
