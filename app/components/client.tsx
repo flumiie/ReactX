@@ -21,7 +21,7 @@ const link = onError(({ graphQLErrors, networkError }) =>
   if (networkError) console.log(`[Network error]: ${networkError}`)
 })
 
-const cache = new InMemoryCache();
+const cache = new InMemoryCache()
 
 const restLink = new HttpLink(
 {

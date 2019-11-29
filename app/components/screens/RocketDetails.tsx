@@ -24,7 +24,7 @@ import ModelView from 'react-native-gl-model-view'
 const RocketDetails = (props: any) =>
 {
   const rocketID = props.navigation.state.params.rocketID
-  const AnimatedModelView = Animated.createAnimatedComponent(ModelView);
+  const AnimatedModelView = Animated.createAnimatedComponent(ModelView)
   
   return (
     <Query

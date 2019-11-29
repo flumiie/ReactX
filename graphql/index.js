@@ -1,22 +1,24 @@
-const { GraphQLServer } = require('graphql-yoga');
-const fetch = require('node-fetch');
+const { GraphQLServer } = require('graphql-yoga')
+const fetch = require('node-fetch')
 
-const API_URL = 'https://api.spacexdata.com/v3/';
+const API_URL = 'https://api.spacexdata.com/v3/'
 
 const typeDefs = `
-  type Query {
+  type Query
+  {
     rocket(id: String!): Rocket
     rockets(limit: Int!): [Rocket]
   }
 
-  type Rocket {
+  type Rocket
+  {
     id: String
     rocket_name: String
     active: String
     stages: String
     description: String
   }
-`;
+`
 
 const resolvers =
 {
@@ -33,16 +35,16 @@ const resolvers =
       return response.json()
     }
   }
-};
+}
 
 const server = new GraphQLServer(
 {
   typeDefs,
   resolvers
-});
+})
 
 server.start().then(( url ) =>
 {
   const PORT = url._connectionKey.split('::::')[1]
-  console.log(`🚀 Server is running at http://localhost:${PORT}`)
+  console.log(`🚀 Server is running on http://localhost:${PORT}`)
 })
