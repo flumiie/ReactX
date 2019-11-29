@@ -36,11 +36,6 @@ const RocketDetails = (props: any) =>
       {
         (res: any) =>
         {
-          // if(err)
-          //   return (
-          //     <Text style={styles.errorText}>{err}</Text>
-          //   )
-
           if(res.loading && !res.data)
             return (
               <View style={styles.loadingContainer}>
@@ -55,7 +50,12 @@ const RocketDetails = (props: any) =>
           return (
             <ScrollView>
               <Container style={styles.container}>
-                <Image source={rocketImage(item.rocket_id)} resizeMode='cover' width={D_WIDTH} height={D_WIDTH}/>
+                <Image
+                  source={rocketImage(item.rocket_id)}
+                  resizeMode='cover'
+                  width={D_WIDTH}
+                  height={D_WIDTH}
+                />
                 <Text style={styles.itemText}>{item.rocket_name}</Text>
                 <Text style={styles.itemText}>Is Active: {isActive}</Text>
                 <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>

@@ -45,11 +45,6 @@ const Launches = () =>
       {
         (res: any) =>
         {
-          // if(err)
-          //   return (
-          //     <Text style={styles.errorText}>{err}</Text>
-          //   )
-          
           if(res.loading && !res.data)
             return (
               <View style={styles.loadingContainer}>
