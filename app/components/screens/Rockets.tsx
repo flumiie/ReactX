@@ -72,7 +72,8 @@ const Rockets = (props: any) =>
   const onRefresh = useCallback((refetch) =>
   {
     setRefreshing(true)
-    refetch().then(() => setRefreshing(false))
+    refetch()
+    setRefreshing(false)
   }, [refreshing])
 
   const _renderFlatList = ({ item }) =>
