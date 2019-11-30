@@ -7,6 +7,7 @@
     "app:shake": "cd app && yarn shake",
     "gql:start": "cd graphql && yarn start",
     "wm:del": "watchman watch-del-all",
+    "gradle:clean": "cd app/android && ./gradlew clean && cd ../..",
     "npm:preinstall": "cd app && npm i && cd ../graphql && npm i",
     "yarn:preinstall": "cd app && yarn && cd ../graphql && yarn"
   }

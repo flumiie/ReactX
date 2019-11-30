@@ -4,7 +4,10 @@ const queries = require('./schemas/queries')
 const schemaRockets = require('./schemas/rockets')
 const schemaMissions = require('./schemas/missions')
 
-const options = {
+const options =
+{
+  secure: false,
+  uri: 'localhost',
   port: 4000,
   endpoint: '/graphql',
   subscriptions: '/subscriptions',
@@ -22,7 +25,8 @@ const server = new GraphQLServer(
   resolvers
 })
 
-server.start(options, ({ port }) =>
+server.start(options, ({ secure, uri, port, playground }) =>
 {
-  console.log(`🚀 Server is listening on port ${port}`)
+  const http = secure ? 'https://' : 'http://'
+  console.log(`🚀 Server is listening on port ${port} | Playground: ${http}${uri}:${port}${playground}`)
 })

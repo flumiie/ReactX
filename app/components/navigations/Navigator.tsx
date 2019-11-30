@@ -1,4 +1,4 @@
-import { createAppContainer } from 'react-navigation';
+import { createAppContainer, StackActions, NavigationActions } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
@@ -14,11 +14,7 @@ const BottomTabNavigator = createMaterialBottomTabNavigator(
     screen: Rockets,
     // navigationOptions:
     // {
-    //   tabBarOnPress: ({ navigation, defaultHandler }) =>
-    //   {
-    //     const routeName = navigation.state.routeName
-    //     console.log(navigation)
-    //   },
+    //   tabBarOnPress: ({ navigation, defaultHandler }) => {},
     // }
   },
   Launches:

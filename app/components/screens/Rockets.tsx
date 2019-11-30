@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import
 {
   Platform,
@@ -8,7 +8,9 @@ import
   View,
   Text,
   ImageBackground,
-  Image
+  Image,
+  SafeAreaView,
+  RefreshControl
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import { NavigationActions } from 'react-navigation'
@@ -64,7 +66,14 @@ export const rocketImage = (id: any) =>
 
 const Rockets = (props: any) =>
 {
+  const [refreshing, setRefreshing] = useState(false)
   const [animatedCards, setAnimatedCards] = useState(true)
+
+  const onRefresh = useCallback((refetch) =>
+  {
+    setRefreshing(true)
+    refetch().then(() => setRefreshing(false))
+  }, [refreshing])
 
   const _renderFlatList = ({ item }) =>
   {
@@ -133,39 +142,68 @@ const Rockets = (props: any) =>
       {
         (res: any) =>
         {
-          if(res.loading && !res.data)
+          if (res.loading && !res.data)
             return (
               <View style={styles.loadingContainer}>
                 <View style={styles.loadStatus}>
-                  <Spinner color='blue'/>
+                  <Spinner color='blue' />
                 </View>
               </View>
             )
-
+          
           if(res.error)
             return (
-              <View style={styles.loadingContainer}>
-                <View style={styles.loadStatus}>
+              <SafeAreaView style={styles.loadingContainer}>
+                <ScrollView
+                  contentContainerStyle={styles.loadStatus}
+                  refreshControl=
+                  {
+                    <RefreshControl
+                      refreshing={refreshing}
+                      onRefresh={() => onRefresh(res.refetch)}
+                    />
+                  }
+                >
+                  <View>
                   {
                     res.error.message.split(': ').map((err: any, i: any) =>
                       i == 0 ?
-                        <Text style={{
-                          textTransform: 'uppercase',
-                          fontWeight: 'bold',
-                          fontSize: 30,
-                          marginBottom: 10
-                        }} key={i}>{err.toString()}</Text>
+                        <Text
+                          style={{
+                            textAlign: 'center',
+                            textTransform: 'uppercase',
+                            fontWeight: 'bold',
+                            fontSize: 30,
+                            marginBottom: 10
+                          }}
+                          key={i}
+                        >{err.toString()}</Text>
                         :
-                        <Text key={i}>{err.toString()}</Text>
+                        <Text
+                          style={{
+                            textAlign: 'center'
+                          }}
+                          key={i}
+                        >{err.toString()}</Text>
                     )
                   }
-                </View>
-              </View>
+                  </View>
+                </ScrollView>
+              </SafeAreaView>
             )
 
           return (
-            <View>
-              <ScrollView style={styles.scrollViewContainer}>
+            <SafeAreaView style={{ flex: 1 }}>
+              <ScrollView
+                style={styles.scrollViewContainer}
+                refreshControl=
+                {
+                  <RefreshControl
+                    refreshing={refreshing}
+                    onRefresh={() => onRefresh(res.refetch)}
+                  />
+                }
+              >
                 {
                   animatedCards
                     ? <Carousel
@@ -186,7 +224,7 @@ const Rockets = (props: any) =>
                 <AwesomeButton
                   height={35}
                   onPress={() =>
-                  {
+                    {
                     if(animatedCards) setAnimatedCards(false)
                     else setAnimatedCards(true)
                   }}
@@ -198,7 +236,7 @@ const Rockets = (props: any) =>
                   }
                 </AwesomeButton>
               </View>
-            </View>
+            </SafeAreaView>
           )
         }
       }
@@ -210,13 +248,9 @@ const styles = StyleSheet.create(
 {
   loadStatus:
   {
-    display: 'flex',
+    flex: 1,
     alignItems: 'center',
-    marginTop: D_HEIGHT / 2,
-    transform:
-      [
-        { translateY: -D_HEIGHT / 12.5 }
-      ]
+    justifyContent: 'center',
   },
 
   loadingContainer:
@@ -226,7 +260,9 @@ const styles = StyleSheet.create(
   },
   scrollViewContainer:
   {
-    height: '100%'
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   buttonContainer:
   {

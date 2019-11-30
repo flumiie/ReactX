@@ -3,7 +3,7 @@ import gql from "graphql-tag"
 export const GET_ROCKETS = gql`
   query Rockets
   {
-    rockets(limit: 10)
+    rockets
     {
       rocket_id
       rocket_name
