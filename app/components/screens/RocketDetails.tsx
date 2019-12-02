@@ -56,13 +56,12 @@ const RocketDetails = (props: any) =>
                   width={D_WIDTH}
                   height={D_WIDTH}
                 />
-                <Text style={styles.itemText}>{item.rocket_name}</Text>
+                <Text style={styles.itemText}>Rocket Name: {item.rocket_name}</Text>
                 <Text style={styles.itemText}>Is Active: {isActive}</Text>
                 <Text style={styles.itemText}>First Flight: {item.first_flight}</Text>
                 <Text style={styles.itemText}>Company: {item.company}</Text>
                 <Text style={styles.itemText}>Country: {item.country}</Text>
-                {/* <Text style={styles.itemText}>Diameter: {item.diameter}</Text> */}
-                {/* <Text style={styles.itemText}>Engines: {item.engines}</Text> */}
+                <Text style={styles.itemText}>Success Rate PCT: {item.success_rate_pct}</Text>
                 <Text style={styles.itemText}>Cost per Launch: {item.cost_per_launch}</Text>
                 <Text style={styles.itemText}>Boosters: {item.boosters}</Text>
                 <Text style={[styles.itemText, item.description ? styles.descriptionText : styles.errorText]}>
@@ -118,23 +117,13 @@ const styles = StyleSheet.create(
   },
   itemText:
   {
-    fontSize: 20,
-    fontWeight: '500',
-    fontFamily: Platform.select(
-    {
-      ios: 'Chalkboard SE',
-      android: 'sans-serif-condensed'
-    })
+    marginBottom: 10,
+    fontSize: 20
   },
   errorText:
   {
     fontSize: 20,
     fontWeight: '500',
-    fontFamily: Platform.select(
-    {
-      ios: 'Chalkboard SE',
-      android: 'sans-serif-condensed'
-    }),
     color: 'red'
   },
   descriptionText:

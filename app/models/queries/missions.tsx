@@ -1,30 +1,29 @@
 import gql from "graphql-tag"
 
 export const GET_MISSIONS = gql`
-  query Mission
+  query Missions
   {
     missions
     {
-      description
-      id
+      mission_name
+      mission_id
+    }
+  }
+`
+
+export const GET_MISSION_DETAILS = gql`
+  query Mission($mission_id: String!)
+  {
+    mission(id: $mission_id)
+    {
+      mission_name
+      mission_id
       manufacturers
-      name
-      twitter
-      payloads
-      {
-        reused
-        payload_type
-        payload_mass_kg
-        payload_mass_lbs
-        orbit
-        norad_id
-        nationality
-        manufacturer
-        id
-        customers
-      }
+      payload_ids
       wikipedia
       website
+      twitter
+      description
     }
   }
 `

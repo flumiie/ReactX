@@ -195,6 +195,13 @@ const Rockets = (props: any) =>
 
           return (
             <SafeAreaView style={{ flex: 1 }}>
+              <Text
+                style={{
+                  position: 'absolute',
+                  left: 5,
+                  bottom: 5,
+                  color: '#CCC'
+                }}>3D stuffs coming soon ...</Text>
               <ScrollView
                 contentContainerStyle={styles.scrollViewContainer}
                 refreshControl=
@@ -218,7 +225,7 @@ const Rockets = (props: any) =>
                     : <FlatList
                         style={{ width: D_WIDTH }}
                         data={res.data.rockets}
-                        renderItem={(item) => _renderFlatList(item)}
+                        renderItem={_renderFlatList}
                       />
                 }
               </ScrollView>
@@ -233,7 +240,7 @@ const Rockets = (props: any) =>
                 >
                   {
                     animatedCards
-                      ? 'Animated'
+                      ? 'Carousel'
                       : 'Flat'
                   }
                 </AwesomeButton>
@@ -337,24 +344,13 @@ const styles = StyleSheet.create(
   itemText:
   {
     color: 'white',
-    fontSize: 17,
-    fontWeight: '500',
-    fontFamily: Platform.select(
-      {
-        ios: 'Chalkboard SE',
-        android: 'sans-serif-condensed'
-      })
+    fontSize: 17
   },
 
   errorText:
   {
     fontSize: 20,
     fontWeight: '500',
-    fontFamily: Platform.select(
-      {
-        ios: 'Chalkboard SE',
-        android: 'sans-serif-condensed'
-      }),
     color: 'red'
   },
   descriptionText:

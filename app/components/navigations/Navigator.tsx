@@ -3,9 +3,10 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
 import Rockets from '../screens/Rockets'
-import RocketDetails from '../screens/RocketDetails'
 import Launches from '../screens/Launches'
 import Missions from '../screens/Missions'
+import RocketDetails from '../screens/RocketDetails'
+import MissionDetails from '../screens/MissionDetails';
 
 const BottomTabNavigator = createMaterialBottomTabNavigator(
 {
@@ -21,7 +22,10 @@ const BottomTabNavigator = createMaterialBottomTabNavigator(
   {
     screen: Launches,
   },
-  Missions: { screen: Missions },
+  Missions:
+  {
+    screen: Missions,
+  },
 },
 {
   initialRouteName: 'Rockets',
@@ -42,6 +46,10 @@ const Screens = createStackNavigator(
   {
     screen: RocketDetails,
   },
+  MissionDetails:
+  {
+    screen: MissionDetails,
+  }
 },
 {
   initialRouteName: 'Main',
