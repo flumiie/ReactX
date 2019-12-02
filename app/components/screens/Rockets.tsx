@@ -149,7 +149,7 @@ const Rockets = (props: any) =>
                 <View style={styles.loadStatus}>
                   <Spinner color='blue' />
                 </View>
-              </View>
+              </View> 
             )
           
           if(res.error)
@@ -196,7 +196,7 @@ const Rockets = (props: any) =>
           return (
             <SafeAreaView style={{ flex: 1 }}>
               <ScrollView
-                style={styles.scrollViewContainer}
+                contentContainerStyle={styles.scrollViewContainer}
                 refreshControl=
                 {
                   <RefreshControl
@@ -208,17 +208,18 @@ const Rockets = (props: any) =>
                 {
                   animatedCards
                     ? <Carousel
-                      // ref={(c) => { this._carousel = c }}
-                      data={res.data.rockets}
-                      renderItem={_renderCarousel}
-                      sliderWidth={D_WIDTH}
-                      itemWidth={D_WIDTH / 1.2}
-                      hasParallaxImages={true}
-                    />
+                        // ref={(c) => { this._carousel = c }}
+                        data={res.data.rockets}
+                        renderItem={_renderCarousel}
+                        sliderWidth={D_WIDTH}
+                        itemWidth={D_WIDTH / 1.2}
+                        hasParallaxImages={true}
+                      />
                     : <FlatList
-                      data={res.data.rockets}
-                      renderItem={(item) => _renderFlatList(item)}
-                    />
+                        style={{ width: D_WIDTH }}
+                        data={res.data.rockets}
+                        renderItem={(item) => _renderFlatList(item)}
+                      />
                 }
               </ScrollView>
               <View style={styles.buttonContainer}>
