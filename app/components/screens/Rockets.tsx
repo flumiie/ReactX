@@ -34,6 +34,21 @@ import Carousel, { ParallaxImage } from 'react-native-snap-carousel'
 import { Card } from 'react-native-paper'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 
+import
+{
+  Container,
+  SafeAreaContainer,
+  Components,
+  CardEntry, 
+  CardImage, 
+  Gradient,
+  Title,
+  Subtitle,
+  ErrorHeader,
+  ErrorText,
+  ComingSoon
+} from '../styles/styled'
+
 const openRocketDetails = (itemID: any, navigation: any) =>
 {
   navigation.dispatch(
@@ -85,24 +100,22 @@ const Rockets = (props: any) =>
         <Card
           onPress={() => openRocketDetails(item.rocket_id, props.navigation)}
         >
-          <CardItem style={styles.cardItem}>
-            <ImageBackground
+          <CardEntry>
+            <CardImage
               source={rocketImage(item.rocket_id)}
-              style={styles.cardImage}
               resizeMode='cover'
               borderRadius={5}
             >
-              <LinearGradient
+              <Gradient
                 colors={['black', '#ffffff00']}
                 start={{ x: 0, y: 0.75 }}
                 end={{ x: 0, y: 0 }}
-                style={styles.textContainer}
               >
-                <Text style={styles.itemTitle}>{item.rocket_name}</Text>
-                <Text style={styles.itemText}>Is Active: {isActive}</Text>
-              </LinearGradient>
-            </ImageBackground>
-          </CardItem>
+                <Title>{item.rocket_name}</Title>
+                <Subtitle>Is Active: {isActive}</Subtitle>
+              </Gradient>
+            </CardImage>
+          </CardEntry>
         </Card>
       </Content>
     )
@@ -116,7 +129,7 @@ const Rockets = (props: any) =>
       <TouchableOpacity
         onPress={() => openRocketDetails(item.rocket_id, props.navigation)}
       >
-        <View style={styles.carouselItem}>
+        <Carousel>
           <ParallaxImage
             source={rocketImage(item.rocket_id)}
             containerStyle={styles.carouselImageContainer}
@@ -124,16 +137,15 @@ const Rockets = (props: any) =>
             parallaxFactor={0.4}
             {...parallaxProps}
           />
-          <LinearGradient
+          <Gradient
             colors={['black', '#ffffff00']}
             start={{ x: 0, y: 0.75 }}
             end={{ x: 0, y: 0 }}
-            style={styles.textContainer}
           >
-            <Text style={styles.itemTitle}>{item.rocket_name}</Text>
-            <Text style={styles.itemText}>Is Active: {isActive}</Text>
-          </LinearGradient>
-        </View>
+            <Title>{item.rocket_name}</Title>
+            <Subtitle>Is Active: {isActive}</Subtitle>
+          </Gradient>
+        </Carousel>
       </TouchableOpacity>
     )
   }
@@ -145,18 +157,18 @@ const Rockets = (props: any) =>
         {
           if (res.loading && !res.data)
             return (
-              <View style={styles.loadingContainer}>
-                <View style={styles.loadStatus}>
+              <Container>
+                <Components>
                   <Spinner color='blue' />
-                </View>
-              </View> 
+                </Components>
+              </Container> 
             )
           
           if(res.error)
             return (
-              <SafeAreaView style={styles.loadingContainer}>
+              <SafeAreaContainer>
                 <ScrollView
-                  contentContainerStyle={styles.loadStatus}
+                  contentContainerStyle={styles.contents}
                   refreshControl=
                   {
                     <RefreshControl
@@ -166,44 +178,28 @@ const Rockets = (props: any) =>
                   }
                 >
                   <View>
-                  {
-                    res.error.message.split(': ').map((err: any, i: any) =>
-                      i == 0 ?
-                        <Text
-                          style={{
-                            textAlign: 'center',
-                            textTransform: 'uppercase',
-                            fontWeight: 'bold',
-                            fontSize: 30,
-                            marginBottom: 10
-                          }}
-                          key={i}
-                        >{err.toString()}</Text>
-                        :
-                        <Text
-                          style={{
-                            textAlign: 'center'
-                          }}
-                          key={i}
-                        >{err.toString()}</Text>
-                    )
-                  }
+                    {
+                      res.error.message.split(': ').map((err: any, i: any) =>
+                        i == 0 ?
+                          <ErrorHeader key={i}>{err.toString()}</ErrorHeader>
+                          :
+                          <ErrorText key={i}>{err.toString()}</ErrorText>
+                      )
+                    }
+                    <ErrorText>
+                      We're having trouble loading the data ..{'\n'}
+                      Please try it again later
+                    </ErrorText>
                   </View>
                 </ScrollView>
-              </SafeAreaView>
+              </SafeAreaContainer>
             )
 
           return (
             <SafeAreaView style={{ flex: 1 }}>
-              <Text
-                style={{
-                  position: 'absolute',
-                  left: 5,
-                  bottom: 5,
-                  color: '#CCC'
-                }}>3D stuffs coming soon ...</Text>
+              <ComingSoon>3D stuffs coming soon ...</ComingSoon>
               <ScrollView
-                contentContainerStyle={styles.scrollViewContainer}
+                contentContainerStyle={styles.contents}
                 refreshControl=
                 {
                   <RefreshControl
@@ -255,63 +251,20 @@ const Rockets = (props: any) =>
 
 const styles = StyleSheet.create(
 {
-  loadStatus:
+  contents:
   {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
 
-  loadingContainer:
-  {
-    flex: 1,
-    width: D_WIDTH
-  },
-  scrollViewContainer:
-  {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
   buttonContainer:
   {
     position: 'absolute',
     bottom: 5,
     right: 5
   },
-  itemContainer:
-  {
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    backgroundColor: 'transparent',
-    // borderWidth: 1,
-    // borderStyle: 'solid',
-    // borderColor: 'gray'
-  },
 
-  /**
-   * Flat List
-   */
-  cardItem:
-  {
-    backgroundColor: 'transparent', //'#694FAD'
-  },
-  cardImage:
-  {
-    flex: 1,
-    height: 200,
-    margin: -16
-  },
-
-  /**
-   * Snap Carousel
-   */
-  carouselItem:
-  {
-    height: D_HEIGHT - D_HEIGHT / 5,
-  },
   parallaxImage:
   {
     ...StyleSheet.absoluteFillObject,
@@ -323,39 +276,6 @@ const styles = StyleSheet.create(
     marginTop: 7,
     marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
     borderRadius: 8
-  },
-
-  textContainer:
-  {
-    position: 'absolute',
-    width: '100%',
-    padding: 7,
-    paddingTop: 15,
-    bottom: 0,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5
-  },
-  itemTitle:
-  {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  itemText:
-  {
-    color: 'white',
-    fontSize: 17
-  },
-
-  errorText:
-  {
-    fontSize: 20,
-    fontWeight: '500',
-    color: 'red'
-  },
-  descriptionText:
-  {
-    color: 'green',
   }
 })
 

@@ -7,7 +7,8 @@ import
   TouchableOpacity,
   FlatList,
   View,
-  Text
+  Text,
+  SafeAreaView
 } from 'react-native'
 import { Spinner } from 'native-base'
 import { Query } from 'react-apollo'
@@ -17,6 +18,21 @@ import
   D_WIDTH
 } from '../../models/dimensions'
 import { GET_PREVIOUS_LAUNCHES } from '../../models/queries/launchesPast'
+
+import
+{
+  Container,
+  SafeAreaContainer,
+  Components,
+  CardEntry, 
+  CardImage, 
+  Gradient,
+  Title,
+  Subtitle,
+  ErrorHeader,
+  ErrorText,
+  ComingSoon
+} from '../styles/styled'
 
 const Launches = () =>
 {
@@ -45,23 +61,23 @@ const Launches = () =>
       {
         (res: any) =>
         {
-          if(res.loading && !res.data)
+          if (res.loading && !res.data)
             return (
-              <View style={styles.loadingContainer}>
-                <View style={styles.spinner}>
-                  <Spinner color='blue'/>
-                </View>
-              </View>
+              <Container>
+                <Components>
+                  <Spinner color='blue' />
+                </Components>
+              </Container> 
             )
 
-          if(!res.data)
+          if(res.error)
             return (
-              <View style={styles.loadingContainer}>
-                <View style={styles.spinner}>
-                  <Text>We're having trouble loading the data ...</Text>
-                  <Text>Please try it again later</Text>
+              <Container>
+                <View style={styles.contents}>
+                  <ErrorHeader>Coming Soon</ErrorHeader>
+                  <ErrorText>The queries will be on the way ...</ErrorText>
                 </View>
-              </View>
+              </Container>
             )
 
           return (
@@ -80,12 +96,7 @@ const Launches = () =>
 
 const styles = StyleSheet.create(
 {
-  loadingContainer:
-  {
-    flex: 1,
-    width: D_WIDTH
-  },
-  spinner:
+  contents:
   {
     display: 'flex',
     alignItems: 'center',
@@ -94,15 +105,6 @@ const styles = StyleSheet.create(
     [
       { translateY: -D_HEIGHT / 12.5 }
     ]
-  },
-  container:
-  {
-    flex: 1, //Instead of do 100% of height and width, just use flex: 1,
-  },
-  headerText:
-  {
-    fontSize: 30,
-    marginTop: 30,
   },
   itemContainer:
   {

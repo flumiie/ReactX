@@ -39,7 +39,7 @@ const RocketDetails = (props: any) =>
           if(res.loading && !res.data)
             return (
               <View style={styles.loadingContainer}>
-                <View style={styles.spinner}>
+                <View style={styles.loadStatus}>
                   <Spinner color='blue'/>
                 </View>
               </View>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create(
     flex: 1,
     width: D_WIDTH
   },
-  spinner:
+  loadStatus:
   {
     display: 'flex',
     alignItems: 'center',
