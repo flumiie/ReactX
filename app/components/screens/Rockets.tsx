@@ -38,6 +38,7 @@ import
 {
   Container,
   SafeAreaContainer,
+  Scrolly,
   Components,
   CardEntry, 
   CardImage, 
@@ -167,8 +168,7 @@ const Rockets = (props: any) =>
           if(res.error)
             return (
               <SafeAreaContainer>
-                <ScrollView
-                  contentContainerStyle={styles.contents}
+                <Scrolly
                   refreshControl=
                   {
                     <RefreshControl
@@ -191,15 +191,14 @@ const Rockets = (props: any) =>
                       Please try it again later
                     </ErrorText>
                   </View>
-                </ScrollView>
+                </Scrolly>
               </SafeAreaContainer>
             )
 
           return (
             <SafeAreaView style={{ flex: 1 }}>
               <ComingSoon>3D stuffs coming soon ...</ComingSoon>
-              <ScrollView
-                contentContainerStyle={styles.contents}
+              <Scrolly
                 refreshControl=
                 {
                   <RefreshControl
@@ -224,7 +223,7 @@ const Rockets = (props: any) =>
                         renderItem={_renderFlatList}
                       />
                 }
-              </ScrollView>
+              </Scrolly>
               <View style={styles.buttonContainer}>
                 <AwesomeButton
                   height={35}
@@ -251,13 +250,6 @@ const Rockets = (props: any) =>
 
 const styles = StyleSheet.create(
 {
-  contents:
-  {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
   buttonContainer:
   {
     position: 'absolute',

@@ -35,6 +35,7 @@ import
 {
   Container,
   SafeAreaContainer,
+  Scrolly,
   Components,
   CardEntry, 
   CardImage, 
@@ -42,7 +43,7 @@ import
   Title,
   Subtitle,
   ErrorHeader,
-  ErrorText
+  ErrorText,
 } from '../styles/styled'
 
 const openMissionDetails = (itemID: any, navigation: any) =>
@@ -127,8 +128,7 @@ const Missions = (props: any) =>
           if(res.error)
             return (
               <SafeAreaContainer>
-                <ScrollView
-                  contentContainerStyle={styles.contents}
+                <Scrolly
                   refreshControl=
                   {
                     <RefreshControl
@@ -151,14 +151,13 @@ const Missions = (props: any) =>
                       Please try it again later
                     </ErrorText>
                   </View>
-                </ScrollView>
+                </Scrolly>
               </SafeAreaContainer>
             )
 
           return (
             <SafeAreaView style={{ flex: 1 }}>
-              <ScrollView
-                contentContainerStyle={styles.contents}
+              <Scrolly
                 refreshControl=
                 {
                   <RefreshControl
@@ -172,7 +171,7 @@ const Missions = (props: any) =>
                   data={res.data.missions}
                   renderItem={_renderItem}
                 />
-              </ScrollView>
+              </Scrolly>
             </SafeAreaView>
           )
         }
@@ -180,30 +179,6 @@ const Missions = (props: any) =>
     </Query>
   )
 }
-
-const styles = StyleSheet.create(
-{
-  contents:
-  {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  /**
-   * Flat List
-   */
-  cardItem:
-  {
-    backgroundColor: 'transparent', //'#694FAD'
-  },
-  cardImage:
-  {
-    flex: 1,
-    height: 200,
-    margin: -16
-  }
-})
 
 Missions.navigationOptions = ({ navigation }) => (
 {
