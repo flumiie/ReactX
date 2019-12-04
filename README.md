@@ -7,23 +7,18 @@ Data will be fetched from the SpaceX's own REST API wrapped in GraphQL located i
 ## Pre-installation
 
 To begin, clone this repo and navigate to the project's root.<br/>
-Then run one of this command:<br/>
-With NPM: ```npm run npm:preinstall```<br/>
-With Yarn: ```yarn yarn:preinstall```
+Then run this command:<br/>
+```yarn preinstall```
 
 ## App Build, Metro Bundler, & GQL Server
 
 To build the app:<br/>
-With NPM: ```npm run app:build```<br/>
-With Yarn: ```yarn app:build```
+Android: ```yarn build```
+iOS: ```yarn buildios```
 
-To start the Metro Bundler:<br/>
-With NPM: ```npm run metro:start```<br/>
-With Yarn: ```yarn metro:start```
+To start the Metro Bundler: ```yarn metro```
 
-To start GraphQL server:<br/>
-With NPM: ```npm run gql:start```<br/>
-With Yarn: ```yarn gql:start```
+To start GraphQL server: ```yarn gql```
 
 ## Sidenote
 
